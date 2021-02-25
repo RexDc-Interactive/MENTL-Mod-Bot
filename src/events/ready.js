@@ -1,5 +1,6 @@
 const { MessageEmbed } = require('discord.js');
 const emojis = require('../utils/emojis.json');
+const config = require('../../config.json');
 
 module.exports = async (client) => {
   const isBlacklisted = ""
@@ -160,12 +161,22 @@ module.exports = async (client) => {
     if (serverLog)
       serverLog.send(new MessageEmbed().setDescription(`MENTL has left ${guild.guild_name}`))
   }
-
-  client.logger.info('MENTL is now online');
-  const serverLog = client.channels.cache.get(client.serverLogId);
-  if (serverLog)
-    serverLog.send(new MessageEmbed().setDescription(`${emojis.online} MENTL is now online ${emojis.online}`))
-  client.logger.info(`MENTL is running on ${client.guilds.cache.size} server(s)`);
-  if (serverLog)
-    serverLog.send(new MessageEmbed().setDescription(`MENTL is running on ${client.guilds.cache.size} server(s)`))
+	if (config.isdev == "True") {
+		client.logger.info('MENTL Dev is now online - Beware Beta');
+  	const serverLog = client.channels.cache.get(client.serverLogId);
+  	if (serverLog)
+    	serverLog.send(new MessageEmbed().setDescription(`${emojis.online} Dev is now online - Beware Beta ${emojis.online}`))
+  		client.logger.info(`MENTL Dev is now running on ${client.guilds.cache.size} server(s) - Beware Beta`);
+  	if (serverLog)
+    	serverLog.send(new MessageEmbed().setDescription(`MENTL is running on ${client.guilds.cache.size} server(s)`))
+	}
+	else {
+		client.logger.info('MENTL is now online');
+  	const serverLog = client.channels.cache.get(client.serverLogId);
+  	if (serverLog)
+    	serverLog.send(new MessageEmbed().setDescription(`${emojis.online} MENTL is now online ${emojis.online}`))
+  		client.logger.info(`MENTL is running on ${client.guilds.cache.size} server(s)`);
+  	if (serverLog)
+    	serverLog.send(new MessageEmbed().setDescription(`MENTL is running on ${client.guilds.cache.size} server(s)`))
+	}
 };
