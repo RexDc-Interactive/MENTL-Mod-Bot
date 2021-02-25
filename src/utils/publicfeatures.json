@@ -1,0 +1,8 @@
+{
+    "WELCOME_SCREEN_ENABLED": "Welcome Screen Enabled",
+    "NEWS": "Access to Announcement Channel",
+    "DISCOVERABLE": "Discoverable in Directory and is lurkable",
+    "FEATURABLE": "Able to be featured in Directory",
+    "MEMBER_VERIFICATION_GATE_ENABLED": "Verification Enabled",
+    "PREVIEW_ENABLED": "Guild Preview Enabled"
+}
