@@ -152,6 +152,7 @@ module.exports = class ServerInfoCommand extends Command {
       )
       .addField('Default Notifications', notifications[server.defaultMessageNotifications], true)
       .addField('Partnered', `\`${server.partnered}\``, true)
+			.addField('Max Presences', (server.maxPresences) ? `\`${server.maxPresences}\`` : `\`25000\``)
       .addField('Is Large?', `\`${server.large}\``, true)
       .addField('Verified', `\`${server.verified}\``, true)
       .addField('Created On', `\`${moment(server.createdAt).format('MMM DD YYYY')}\``, true)

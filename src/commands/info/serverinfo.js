@@ -151,6 +151,7 @@ module.exports = class ServerInfoCommand extends Command {
       )
       .addField('Default Notifications', notifications[message.guild.defaultMessageNotifications], true)
       .addField('Partnered', `\`${message.guild.partnered}\``, true)
+			.addField('Max Presences', (server.maxPresences) ? `\`${server.maxPresences}\`` : `\`25000\``)
       .addField('Is Large?', `\`${message.guild.large}\``, true)
       .addField('Verified', `\`${message.guild.verified}\``, true)
       .addField('Created On', `\`${moment(message.guild.createdAt).format('MMM DD YYYY')}\``, true)
