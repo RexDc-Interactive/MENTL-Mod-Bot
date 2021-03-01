@@ -43,7 +43,7 @@ module.exports = class ServerInfoCommand extends Command {
   constructor(client) {
     super(client, {
       name: 'globalserverinfo',
-      aliases: ['glserver', 'glsi', 'glserverinfo'],
+      aliases: ['glserver', 'glsi', 'glserverinfo', 'gsi'],
       usage: 'globalserverinfo <server id>',
       description: 'Fetches information and statistics about a server MENTL is in.',
       type: client.types.BOTOWNER
