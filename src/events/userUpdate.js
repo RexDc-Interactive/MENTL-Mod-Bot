@@ -2,6 +2,7 @@ const { MessageEmbed } = require('discord.js');
 const emojis = require('../utils/emojis.json');
 
 module.exports = (client, oldUser, newUser) => {
+
   /**
    *  User Tag Change (Username and Discriminator)
    */
@@ -32,10 +33,11 @@ module.exports = (client, oldUser, newUser) => {
       serverLog.send(embed)
 		}
 	}
+
   /**
    *  Username Change
    */
-  else if (oldUser.username != newUser.username) {
+  if (oldUser.username != newUser.username) {
     client.db.users.updateUser.run(newUser.username, newUser.discriminator, newUser.id);
     client.logger.info(`${oldUser.tag}/${newUser.tag}: ${oldUser.username} username changed to ${newUser.username}`);
     const serverLog = client.channels.cache.get(client.serverLogId);
@@ -46,6 +48,7 @@ module.exports = (client, oldUser, newUser) => {
                           .addField('Old Username', `${oldUser.username}`)
                           .addField('New Username', `${newUser.username}`))  
   }
+	
   /**
    *  Discriminator Change
    */
