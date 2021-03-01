@@ -16,7 +16,7 @@ module.exports = class ServersCommand extends Command {
   run(message) {
 
     const servers = message.client.guilds.cache.array().map(guild => {
-      return `\`${guild.id}\` - **${guild.name}** - \`${guild.members.cache.size}\` members - Created on: \`${guild.createdAt.toString()}\``;
+      return `\`${guild.id}\` - **${guild.name}** - \`${guild.members.cache.size}\` members - Created on: \`${guild.createdAt.toString()}\`\n`;
     });
 
     const embed = new MessageEmbed()
