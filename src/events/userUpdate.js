@@ -2,22 +2,6 @@ const { MessageEmbed } = require('discord.js');
 const emojis = require('../utils/emojis.json');
 
 module.exports = (client, oldUser, newUser) => {
-  
-  /**
-   * User Tag Change (Username or Discriminator)
-   */
-  if (oldUser.username != newUser.username || oldUser.discriminator != newUser.discriminator) {
-    client.db.users.updateUser.run(newUser.username, newUser.discriminator, newUser.id);
-    client.logger.info(`${oldUser.tag} user tag changed to ${newUser.tag}`);
-    const serverLog = client.channels.cache.get(client.serverLogId);
-    if (serverLog)
-      serverLog.send(new MessageEmbed()
-                          .setDescription(`${emojis.member} A users User Tag has changed`)
-                          .addField('User', `${oldUser.tag}`)
-                          .addField('Old Tag', `${oldUser.tag}`)
-                          .addField('New Tag', `${newUser.tag}`))  
-  }
-
   /**
    *  User Tag Change (Username and Discriminator)
    */
@@ -29,6 +13,25 @@ module.exports = (client, oldUser, newUser) => {
     if (serverLog)
       serverLog.send(new MessageEmbed().setDescription(`${oldUser.tag} user tag changed to ${newUser.tag}`))  
   }
+
+  /**
+   * User Tag Change (Username or Discriminator)
+   */
+  if (oldUser.username != newUser.username || oldUser.discriminator != newUser.discriminator) {
+    client.db.users.updateUser.run(newUser.username, newUser.discriminator, newUser.id);
+    client.logger.info(`${oldUser.tag} user tag changed to ${newUser.tag}`);
+    const serverLog = client.channels.cache.get(client.serverLogId);
+    if (serverLog) {
+			const embed =	new MessageEmbed()
+                  .setDescription(`${emojis.member} A User Tag has changed`)
+                  .addField('User', `${oldUser.tag}`)
+                  .addField('Old Tag', `${oldUser.tag}`)
+                  .addField('New Tag', `${newUser.tag}`)
+									if (oldUser.username != newUser.username) embed.addField('What changed?', 'Username');
+									if (oldUser.discriminator != newUser.discriminator) embed.addField('What changed?', 'Discriminator');
+      serverLog.send(embed)
+		}
+	}
   /**
    *  Username Change
    */
@@ -38,7 +41,7 @@ module.exports = (client, oldUser, newUser) => {
     const serverLog = client.channels.cache.get(client.serverLogId);
     if (serverLog)
       serverLog.send(new MessageEmbed()
-                          .setDescription(`:: A users Username has changed`)
+                          .setDescription(`${emojis.member} A Username has changed`)
                           .addField('User', `${oldUser.tag}`)
                           .addField('Old Username', `${oldUser.username}`)
                           .addField('New Username', `${newUser.username}`))  
@@ -52,7 +55,7 @@ module.exports = (client, oldUser, newUser) => {
     const serverLog = client.channels.cache.get(client.serverLogId);
     if (serverLog)
       serverLog.send(new MessageEmbed()
-                          .setDescription(`${emojis.member} A users Discriminator has changed`)
+                          .setDescription(`${emojis.member} A Discriminator has changed`)
                           .addField('User', `${oldUser.tag}`)
                           .addField('Old Discriminator', `#${oldUser.discriminator}`)
                           .addField('New Discriminator', `#${newUser.discriminator}`))  
