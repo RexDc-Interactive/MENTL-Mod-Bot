@@ -137,13 +137,13 @@ module.exports = class ServerInfoCommand extends Command {
       .addField('Verification Level', verificationLevels[server.verificationLevel], true)
       .addField('Explicit Level', explicitLevels[server.explicitContentFilter], true)
       .addField('Rules Channel', 
-        (server.rulesChannel) ? `${server.rulesChannel.name}` : '`None`', true
+        (server.rulesChannel) ? `#${server.rulesChannel.name}` : '`None`', true
       )
       .addField('System Channel', 
-        (server.systemChannel) ? `${server.systemChannel.name}` : '`None`', true
+        (server.systemChannel) ? `#${server.systemChannel.name}` : '`None`', true
       )
       .addField('AFK Channel', 
-        (server.afkChannel) ? `${voice} ${server.afkChannel.name}` : '`None`', true
+        (server.afkChannel) ? `#${voice} ${server.afkChannel.name}` : '`None`', true
       )
       .addField('AFK Timeout', 
         (server.afkChannel) ? 
