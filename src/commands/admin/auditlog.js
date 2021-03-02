@@ -21,10 +21,8 @@ module.exports = class AdminsCommand extends Command {
 			});
 
 			const log = fetchedLogs.entries.first()
-			const opt = fetchedLogs.entries.first().extra
 			const changes = fetchedLogs.entries.first().changes
 			let changedValues = changes.map(c => `${c.key} is changed from ${c.old} to ${c.new}`).join('\n')
-			console.log(changedValues)
 			const { action, actionType, createdAt, executor, target } = log
 
 			const embed = new MessageEmbed()
@@ -46,6 +44,8 @@ module.exports = class AdminsCommand extends Command {
 			});
 
 			const log = fetchedLogs2.entries.first()
+			const changes = fetchedLogs.entries.first().changes
+			let changedValues = changes.map(c => `${c.key} is changed from ${c.old} to ${c.new}`).join('\n')
 			const { action, actionType, changes, createdAt, executor, target } = log
 
 			const embed = new MessageEmbed()
@@ -54,7 +54,7 @@ module.exports = class AdminsCommand extends Command {
 				.addField('ActionType', `${actionType}`, true)
 				.addField('Executor (Mod)', `${executor.tag}`)
 				.addField('Target',`${target.tag}`)
-				.addField('Changes',`${changes}`)
+				.addField('Changes:', `${changedValues}`)
 
 			message.channel.send(embed)		
 		}
