@@ -44,7 +44,7 @@ module.exports = class AdminsCommand extends Command {
 			});
 
 			const log = fetchedLogs2.entries.first()
-			const changes = fetchedLogs.entries.first().changes
+			const changes = fetchedLogs2.entries.first().changes
 			let changedValues = changes.map(c => `${c.key} is changed from ${c.old} to ${c.new}`).join('\n')
 			const { action, actionType, createdAt, executor, target } = log
 
