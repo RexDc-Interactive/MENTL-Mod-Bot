@@ -16,8 +16,7 @@ module.exports = class AdminsCommand extends Command {
   async run(message, args) {
 		if (args[0] == 'type') {
 			const fetchedLogs = await message.guild.fetchAuditLogs({
-				type: args[1],
-				limit: args[2]
+				type: args[1]
 			});
 
 			const log = fetchedLogs.entries.first()
@@ -32,15 +31,13 @@ module.exports = class AdminsCommand extends Command {
 				.addField('Executor (Mod)', `${executor.tag}`)
 				.addField('Target',`${target.tag}`)
 				.addField('Changes:', `${changedValues}`)				
-
 			message.channel.send(embed)		
 		}
 
 		else if (args[0] == 'user') {
 			const fetchedLogs2 = await message.guild.fetchAuditLogs({
 				user: args[1],
-				limit: args[2],
-				type: args[3]
+				type: args[2]
 			});
 
 			const log = fetchedLogs2.entries.first()
@@ -55,7 +52,6 @@ module.exports = class AdminsCommand extends Command {
 				.addField('Executor (Mod)', `${executor.tag}`)
 				.addField('Target',`${target.tag}`)
 				.addField('Changes:', `${changedValues}`)
-
 			message.channel.send(embed)		
 		}
 	}
