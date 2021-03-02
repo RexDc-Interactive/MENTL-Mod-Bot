@@ -46,7 +46,7 @@ module.exports = class AdminsCommand extends Command {
 			const log = fetchedLogs2.entries.first()
 			const changes = fetchedLogs.entries.first().changes
 			let changedValues = changes.map(c => `${c.key} is changed from ${c.old} to ${c.new}`).join('\n')
-			const { action, actionType, changes, createdAt, executor, target } = log
+			const { action, actionType, createdAt, executor, target } = log
 
 			const embed = new MessageEmbed()
 				.addField('Date of Log', `${createdAt}`)
