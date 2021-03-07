@@ -18,12 +18,12 @@ module.exports = async (client, member) => {
   const serverLog = client.channels.cache.get(client.serverLogId);
   
   if (serverLog) {
-    if (target.id === member.id) {
+    if (target.id === member.id || kicklog) {
       serverLog.send(new MessageEmbed()
                         .setDescription(`${emojis.member} Member was kicked from ${member.guild.name}`)
                         .addField('ID', `${member.user.id}`)
                         .addField('Tag',`${member.user.tag}`)
-                        .addField('Moderator', `${executor.tag}`))
+                        .addField('Moderator', `${executor} ? ${executor.tag} : 'Null'`))
     }
     else {
       serverLog.send(new MessageEmbed()
