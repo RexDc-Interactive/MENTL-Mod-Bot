@@ -41,9 +41,9 @@ const logger = createLogger({
       options: { flags: 'a' } 
     }),
 		new transports.File({
-			filename: path.join(__basedir, 'logs/warn.log')
+			filename: path.join(__basedir, 'logs/warn.log'),
 			level: 'warn',
-			format: logFormat
+			format: logFormat,
 			options: { flags: 'a' }
 		})
     // Logging only warns and errors to file
