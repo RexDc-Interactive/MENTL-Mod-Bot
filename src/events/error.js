@@ -1,6 +1,8 @@
 module.exports = (client, error) => {
   client.logger.error(error);
-  const serverLog = client.channels.cache.get(client.serverLogId);
-  if (serverLog)
-    serverLog.send(new MessageEmbed().setDescription(`${emojis.online} MENTL is now online ${emojis.online}`))
+  const errorLog = client.channels.cache.get(client.errorLogId);
+  if (errorLog)
+    serverLog.send(
+			new MessageEmbed().setDescription(`Oh Dear MENTL just crashed heres why:
+																					\`${error}\``))
 };
