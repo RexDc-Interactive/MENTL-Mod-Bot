@@ -15,18 +15,18 @@ module.exports = async (client, member) => {
   const { executor, target } = kickLog;
 
   client.logger.info(`${member.guild.name}: ${member.user.tag} has left the server - ID: ${member.user.id}`);
-  const serverLog = client.channels.cache.get(client.serverLogId);
+  const mleaveLog = client.channels.cache.get(client.mleaveLogId);
   
-  if (serverLog) {
+  if (mleaveLog) {
     if (target.id === member.id || kicklog) {
-      serverLog.send(new MessageEmbed()
+      mleaveLog.send(new MessageEmbed()
                         .setDescription(`${emojis.member} Member was kicked from ${member.guild.name}`)
                         .addField('ID', `${member.user.id}`)
                         .addField('Tag',`${member.user.tag}`)
                         .addField('Moderator', `${executor} ? ${executor.tag} : 'Null'`))
     }
     else {
-      serverLog.send(new MessageEmbed()
+      mleaveLog.send(new MessageEmbed()
                         .setDescription(`${emojis.member} Member has left ${member.guild.name}`)
                         .addField('ID', `${member.user.id}`)
                         .addField('Tag',`${member.user.tag}`)

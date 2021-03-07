@@ -6,9 +6,9 @@ const emojis = require('../utils/emojis.json');
 module.exports = async (client, member) => {
 
   client.logger.info(`${member.guild.name}: ${member.user.tag} has joined the server`);
-  const serverLog = client.channels.cache.get(client.serverLogId);
-  if (serverLog)
-      serverLog.send(new MessageEmbed()
+  const mjoinLog = client.channels.cache.get(client.mjoinLogId);
+  if (mjoinLog)
+      mjoinLog.send(new MessageEmbed()
                           .setDescription(`${emojis.member} Member has joined ${member.guild.name}`)
                           .addField('ID', `${member.user.id}`)
                           .addField('Tag',`${member.user.tag}`))

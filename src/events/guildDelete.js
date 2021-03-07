@@ -5,9 +5,9 @@ module.exports = (client, guild) => {
   const blacklisted = "";
 
   client.logger.info(`${client.user} has left ${guild.name}`);
-  const serverLog = client.channels.cache.get(client.serverLogId);
-  if (serverLog)
-    serverLog.send(new MessageEmbed()
+  const gleaveLog = client.channels.cache.get(client.gleaveLogId);
+  if (gleaveLog)
+    gleaveLog.send(new MessageEmbed()
                         .setDescription(`${fail} ${client.user} has left **${guild.name}** ${fail}`));
 
   client.db.settings.deleteGuild.run(guild.id);
