@@ -1,3 +1,5 @@
+require('dotenv').config();
+const dashboard = require("discord-bot-dashboard");
 const { MessageEmbed } = require('discord.js');
 const emojis = require('../utils/emojis.json');
 const config = require('../../config.json');
@@ -179,4 +181,11 @@ module.exports = async (client) => {
   	if (serverLog)
     	serverLog.send(new MessageEmbed().setDescription(`MENTL is running on ${client.guilds.cache.size} server(s)`))
 	}
+
+	dashboard.run(client, {
+    port: 8080, 
+    clientSecret: "zATL9fn9NCGSEwlTaLJoD5GELSBdhay0", 
+    redirectURI: "rexdc-interactive.ml"
+  });
 };
+
