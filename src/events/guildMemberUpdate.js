@@ -2,7 +2,21 @@ const { MessageEmbed } = require('discord.js');
 
 module.exports = (client, oldMember, newMember) => {
   
-  const embed = new MessageEmbed()
+  if (oldMember.nickname != newMember.nickname) {
+		client.logger.info(`${oldMember.nickname} nickname changed to ${newMember.nickname}`);
+    const memberLog = client.channels.cache.get(client.memberLogId);
+    if (memberLog)
+      memberLog.send(new MessageEmbed()
+                          .setDescription(`${emojis.member} A Nickname has changed`)
+                          .addField('User', `${oldUser.tag}`)
+                          .addField('Old Nickname', `${oldMember.nickname} ? None : ${oldMember.nickname}`)
+                          .addField('New Nickname', `${newMember.nickname}`))   
+	}
+	
+	
+	
+	
+	const embed = new MessageEmbed()
     .setAuthor(`${newMember.user.tag}`, newMember.user.displayAvatarURL({ dynamic: true }))
     .setTimestamp()
     .setColor(oldMember.guild.me.displayHexColor);
