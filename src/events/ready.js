@@ -1,5 +1,3 @@
-require('dotenv').config();
-const dashboard = require("discord-bot-dashboard");
 const { MessageEmbed } = require('discord.js');
 const emojis = require('../utils/emojis.json');
 const config = require('../../config.json');
