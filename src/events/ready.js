@@ -25,7 +25,11 @@ module.exports = async (client) => {
     activity++;
   }, 30000);
 
-  client.logger.info('Updating database and scheduling jobs...');
+
+	const serverLog = client.channels.cache.get(client.serverLogId);
+	if (serverLog)
+    serverLog.send(new MessageEmbed().setDescription('Updating database and scheduling jobs...'))
+  	client.logger.info('Updating database and scheduling jobs...');
   for (const guild of client.guilds.cache.values()) {
 
     /** ------------------------------------------------------------------------------------------------
@@ -104,9 +108,11 @@ module.exports = async (client) => {
     client.db.settings.updateMuteRoleId.run(muteRole.id, guild.id);
     if (!crownRole) continue
     client.db.settings.updateCrownRoleId.run(crownRole.id, guild.id);
-    
-    client.logger.info('Database Updated and Roles generated');
-
+  
+		const serverLog = client.channels.cache.get(client.serverLogId);
+		if (serverLog)
+    	serverLog.send(new MessageEmbed().setDescription('Database Updated and Roles generated'))
+  		client.logger.info('Database Updated and Roles generated');
 
     /** ------------------------------------------------------------------------------------------------
      * CHECK DATABASE
@@ -157,9 +163,10 @@ module.exports = async (client) => {
     client.db.settings.deleteGuild.run(guild.guild_id);
     client.db.users.deleteGuild.run(guild.guild_id);
 
+		const gleaveLog = client.channels.cache.get(client.gleaveLogId);
     client.logger.info(`MENTL has left ${guild.guild_name}`);
-    if (serverLog)
-      serverLog.send(new MessageEmbed().setDescription(`MENTL has left ${guild.guild_name}`))
+    if (gleaveLog)
+      gleaveLog.send(new MessageEmbed().setDescription(`MENTL has left ${guild.guild_name}`))
   }
 	if (config.isdev == "True") {
 		client.logger.info('MENTL Dev is now online - Beware Beta');
