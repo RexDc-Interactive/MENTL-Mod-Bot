@@ -83,6 +83,48 @@ class Client extends Discord.Client {
      */
     this.serverLogId = config.serverLogId;
 
+		 /** 
+     * MENTLS's member join log channel ID
+     * @type {string}
+     */
+    this.mjoinLogId = config.mjoinLogId;
+
+		 /** 
+     * MENTLS's member leave log channel ID
+     * @type {string}
+     */
+    this.mleaveLogId = config.mleaveLogId;
+
+		 /** 
+     * MENTLS's server join log channel ID
+     * @type {string}
+     */
+    this.gjoinLogId = config.gjoinLogId;
+
+		 /** 
+     * MENTLS's server leave log channel ID
+     * @type {string}
+     */
+    this.gleaveLogId = config.gleaveLogId;
+
+		/** 
+     * MENTLS's user update log channel ID
+     * @type {string}
+     */
+    this.userLogId = config.userLogId;
+
+		/** 
+     * MENTLS's member update log channel ID
+     * @type {string}
+     */
+    this.memberLogId = config.memberLogId;
+
+		/** 
+     * MENTLS's error log channel ID
+     * @type {string}
+     */
+    this.errorLogId = config.errorLogId;
+
     /** 
      * Utility functions
      * @type {Object}
