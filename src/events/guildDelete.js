@@ -4,11 +4,11 @@ const { fail } = require('../utils/emojis.json');
 module.exports = (client, guild) => {
   const blacklisted = "";
 
-  client.logger.info(`${client.user} has left ${guild.name}`);
+  client.logger.info(`${client.user.username} has left ${guild.name}`);
   const gleaveLog = client.channels.cache.get(client.gleaveLogId);
   if (gleaveLog)
     gleaveLog.send(new MessageEmbed()
-                        .setDescription(`${client.user} has left **${guild.name}**`));
+                        .setDescription(`*${client.user.tag}* has left **${guild.name}**`));
 
   client.db.settings.deleteGuild.run(guild.id);
   client.db.blacklist.insertRow.run(
