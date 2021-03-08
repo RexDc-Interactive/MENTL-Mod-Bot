@@ -13,22 +13,43 @@ module.exports = class ServersCommand extends Command {
       ownerOnly: true
     });
   }
-  run(message) {
-		const users = message.client.users.cache.array().map(user => {
-      return `\`${user.id}\` - ${user.username}`;
-    });
+  run(message, args) {
+		if (args[0] == 'all') {
+			const users = message.client.users.cache.array().map(user => {
+				return `\`${user.id}\` - ${user.username}`;
+			});
 
-		const embed = new MessageEmbed()
-      .setTitle('User List')
-      .setFooter(message.member.displayName, message.author.displayAvatarURL({ dynamic: true }))
-      .setTimestamp()
-      .setColor(message.guild.me.displayHexColor);
+			const embed = new MessageEmbed()
+				.setTitle('User List')
+				.setFooter(message.member.displayName, message.author.displayAvatarURL({ dynamic: true }))
+				.setTimestamp()
+				.setColor(message.guild.me.displayHexColor);
 
-    if (users.length <= 10) {
-      const range = (users.length == 1) ? '[1]' : `[1 - ${users.length}]`;
-      message.channel.send(embed.setTitle(`Server List ${range}`).setDescription(users.join('\n')));
-    } else {
-      new ReactionMenu(message.client, message.channel, message.member, embed, users);
-    }
+			if (users.length <= 10) {
+				const range = (users.length == 1) ? '[1]' : `[1 - ${users.length}]`;
+				message.channel.send(embed.setTitle(`Server List ${range}`).setDescription(users.join('\n')));
+			} else {
+				new ReactionMenu(message.client, message.channel, message.member, embed, users);
+			}
+		}
+		else if (args[0] == 'server') {
+			const server = message.client.guilds.fetch(args[1])
+			const users = server.members.cache.array().map(member => {
+				return `\`${member.id}\` - ${member.user.username}`;
+			});
+
+			const embed = new MessageEmbed()
+				.setTitle(`User List for ${server.name}`)
+				.setFooter(message.member.displayName, message.author.displayAvatarURL({ dynamic: true }))
+				.setTimestamp()
+				.setColor(message.guild.me.displayHexColor);
+
+			if (users.length <= 10) {
+				const range = (users.length == 1) ? '[1]' : `[1 - ${users.length}]`;
+				message.channel.send(embed.setTitle(`Server List ${range}`).setDescription(users.join('\n')));
+			} else {
+				new ReactionMenu(message.client, message.channel, message.member, embed, users);
+			}
+		}
 	}
 }
