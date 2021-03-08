@@ -30,7 +30,7 @@ module.exports = (client, oldUser, newUser) => {
                   .addField('New Tag', `${newUser.tag}`)
 									if (oldUser.username != newUser.username) embed.addField('What changed?', 'Username');
 									if (oldUser.discriminator != newUser.discriminator) embed.addField('What changed?', 'Discriminator');
-      userLogId.send(embed)
+      userLog.send(embed)
 		}
 	}
 
