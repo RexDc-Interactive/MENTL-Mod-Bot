@@ -24,7 +24,7 @@ module.exports = class ServersCommand extends Command {
       .setTimestamp()
       .setColor(message.guild.me.displayHexColor);
 
-    if (servers.length <= 10) {
+    if (users.length <= 10) {
       const range = (users.length == 1) ? '[1]' : `[1 - ${users.length}]`;
       message.channel.send(embed.setTitle(`Server List ${range}`).setDescription(users.join('\n')));
     } else {
