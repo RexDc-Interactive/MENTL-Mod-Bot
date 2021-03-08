@@ -20,14 +20,14 @@ module.exports = async (client, member) => {
   if (mleaveLog) {
     if (target.id === member.id || kicklog) {
       mleaveLog.send(new MessageEmbed()
-                        .setDescription(`${emojis.member} Member was kicked from ${member.guild.name}`)
+                        .setDescription(`Member was kicked from ${member.guild.name}`)
                         .addField('ID', `${member.user.id}`)
                         .addField('Tag',`${member.user.tag}`)
                         .addField('Moderator', `${executor} ? ${executor.tag} : 'Null'`))
     }
     else {
       mleaveLog.send(new MessageEmbed()
-                        .setDescription(`${emojis.member} Member has left ${member.guild.name}`)
+                        .setDescription(`Member has left ${member.guild.name}`)
                         .addField('ID', `${member.user.id}`)
                         .addField('Tag',`${member.user.tag}`)
       )

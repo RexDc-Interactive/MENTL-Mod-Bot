@@ -9,7 +9,7 @@ module.exports = async (client, guild) => {
   const gjoinLog = client.channels.cache.get(client.gjoinLogId);
   if (gjoinLog)
     gjoinLog.send(new MessageEmbed()
-                        .setDescription(`${success} ${client.user} has joined **${guild.name}** ${success}`));
+                        .setDescription(`${client.user} has joined **${guild.name}**`));
 
   /** -------------------------------------------------------------------------------------------------
    * CHECK BLACKLIST
@@ -17,7 +17,7 @@ module.exports = async (client, guild) => {
   const blacklisted = client.db.blacklist.selectIsBlacklisted.pluck().get(guild.id)
   if (blacklisted) {
     const embed = new MessageEmbed()
-      .setTitle(':fail1: Server Blacklist :fail1:')
+      .setTitle('Server Blacklist')
       .setDescription(`Sorry but your server **${guild.name}** has been blacklisted from ${client.user}.`)
       .setFooter(message.member.displayName,  message.author.displayAvatarURL({ dynamic: true }))
       .setTimestamp()

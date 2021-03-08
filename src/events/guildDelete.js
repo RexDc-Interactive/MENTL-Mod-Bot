@@ -8,7 +8,7 @@ module.exports = (client, guild) => {
   const gleaveLog = client.channels.cache.get(client.gleaveLogId);
   if (gleaveLog)
     gleaveLog.send(new MessageEmbed()
-                        .setDescription(`${fail} ${client.user} has left **${guild.name}** ${fail}`));
+                        .setDescription(`${client.user} has left **${guild.name}**`));
 
   client.db.settings.deleteGuild.run(guild.id);
   client.db.blacklist.insertRow.run(

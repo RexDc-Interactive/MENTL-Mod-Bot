@@ -24,7 +24,7 @@ module.exports = (client, oldUser, newUser) => {
     const userLog = client.channels.cache.get(client.userLogId);
     if (userLog) {
 			const embed =	new MessageEmbed()
-                  .setDescription(`${emojis.member} A User Tag has changed`)
+                  .setDescription(`A User Tag has changed`)
                   .addField('User', `${oldUser.tag}`)
                   .addField('Old Tag', `${oldUser.tag}`)
                   .addField('New Tag', `${newUser.tag}`)
@@ -43,7 +43,7 @@ module.exports = (client, oldUser, newUser) => {
     const userLog = client.channels.cache.get(client.userLogId);
     if (userLog)
       userLog.send(new MessageEmbed()
-                          .setDescription(`${emojis.member} A Username has changed`)
+                          .setDescription('A Username has changed')
                           .addField('User', `${oldUser.tag}`)
                           .addField('Old Username', `${oldUser.username}`)
                           .addField('New Username', `${newUser.username}`))  
@@ -58,7 +58,7 @@ module.exports = (client, oldUser, newUser) => {
     const userLog = client.channels.cache.get(client.userLogId);
     if (userLog)
       userLog.send(new MessageEmbed()
-                          .setDescription(`${emojis.member} A Discriminator has changed`)
+                          .setDescription('A Discriminator has changed')
                           .addField('User', `${oldUser.tag}`)
                           .addField('Old Discriminator', `#${oldUser.discriminator}`)
                           .addField('New Discriminator', `#${newUser.discriminator}`))  

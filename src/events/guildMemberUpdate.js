@@ -7,7 +7,7 @@ module.exports = (client, oldMember, newMember) => {
     const memberLog = client.channels.cache.get(client.memberLogId);
     if (memberLog)
       memberLog.send(new MessageEmbed()
-                          .setDescription(`${emojis.member} A Nickname has changed`)
+                          .setDescription(`A Nickname has changed`)
                           .addField('User', `${oldUser.tag}`)
                           .addField('Old Nickname', `${oldMember.nickname} ? None : ${oldMember.nickname}`)
                           .addField('New Nickname', `${newMember.nickname}`))   

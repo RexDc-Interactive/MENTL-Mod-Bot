@@ -13,10 +13,10 @@ module.exports = async (client, guild, user) => {
     const { executor, target } = banLog;
 
     client.logger.info(`${user.guild.name}: ${user.tag} was banned from the server`);
-    const serverLog = client.channels.cache.get(client.serverLogId);
+    const mleaveLog = client.channels.cache.get(client.mleaveLogId);
     if (target.id === user.id) {
-        if (serverLog) {
-            serverLog.send(new MessageEmbed()
+        if (mleaveLog) {
+            mleaveLog.send(new MessageEmbed()
                             .setDescription(`${emojis.ban} Member was banned from ${member.guild.name}`)
                             .addField('ID', `${user.id}`)
                             .addField('Tag',`${user.tag}`)
@@ -24,7 +24,7 @@ module.exports = async (client, guild, user) => {
         }
     }
     else {
-        serverLog.send(new MessageEmbed()
+        mleaveLog.send(new MessageEmbed()
                             .setDescription(`${emojis.ban} Member was banned from ${member.guild.name}`)
                             .addField('ID', `${user.id}`)
                             .addField('Tag',`${user.tag}`))

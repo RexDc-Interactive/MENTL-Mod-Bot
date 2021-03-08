@@ -12,7 +12,4 @@ module.exports = (client, oldGuild, newGuild) => {
   const serverLog = client.channels.cache.get(client.serverLogId);
   if (serverLog)
     serverLog.send(new MessageEmbed().setDescription(`${oldGuild.name} server name changed to ${newGuild.name}`))
-
-  
-
 };
