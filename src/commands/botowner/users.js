@@ -33,8 +33,8 @@ module.exports = class ServersCommand extends Command {
 			}
 		}
 		else if (args[0] == 'server') {
-			const server = message.client.guilds.fetch(args[1])
-			const users = server.members.cache.array().map(member => {
+			const server = message.client.guilds.cache.find(guild => guild.id === args[1])
+			const users = server.members.cache.map(member => {
 				return `\`${member.id}\` - ${member.user.username}`;
 			});
 
