@@ -278,26 +278,8 @@ const oldusers = {
   deleteGuild: db.prepare('DELETE FROM oldusers WHERE guild_id = ?;')
 };
 
-// BLACKLIST TABLE
-const blacklist = {
-  insertRow: db.prepare(`
-    INSERT OR IGNORE INTO blacklist (
-      guild_id,
-      is_blacklisted
-    ) VALUES (?, ?);
-  `),
-
-// Selects
-selectIsBlacklisted: db.prepare('SELECT * FROM blacklist WHERE guild_id = ? AND is_blacklisted = 1;'),
-
-// Updates
-updateIsBlacklisted: db.prepare('UPDATE blacklist SET is_blacklisted = 1 WHERE guild_id = ?;')
-
-};
-
 module.exports = {
   settings,
   users,
-  oldusers,
-  blacklist,
+  oldusers
 };

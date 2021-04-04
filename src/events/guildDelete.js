@@ -2,7 +2,6 @@ const { MessageEmbed } = require('discord.js');
 const { fail } = require('../utils/emojis.json');
 
 module.exports = (client, guild) => {
-  const blacklisted = "";
 
   client.logger.info(`${client.user.username} has left ${guild.name}`);
   const gleaveLog = client.channels.cache.get(client.gleaveLogId);
@@ -11,10 +10,7 @@ module.exports = (client, guild) => {
                         .setDescription(`*${client.user.tag}* has left **${guild.name}**`));
 
   client.db.settings.deleteGuild.run(guild.id);
-  client.db.blacklist.insertRow.run(
-    guild.id,
-    blacklisted ? 1 : 0
-  )
+  client.db.users.deleteGuild.run(guild.id);
   
   // Update old users table
   guild.members.cache.forEach(member => {
