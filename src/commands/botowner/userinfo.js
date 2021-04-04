@@ -31,8 +31,9 @@ module.exports = class UserInfoCommand extends Command {
       aliases: ['glwhois', 'gluser', 'glui', 'gwhois', 'guser', 'gui'],
       usage: 'globaluserinfo [user mention/ID]',
       description: 'Fetches a user\'s information. If no user is given, your own information will be displayed.',
-      type: client.types.INFO,
-      examples: ['userinfo @Nettles']
+      type: client.types.BOTOWNER,
+      examples: ['userinfo @Nettles'],
+			ownerOnly: true
     });
   }
   async run(message, args) {
