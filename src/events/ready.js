@@ -72,11 +72,6 @@ module.exports = async (client) => {
       muteRole ? muteRole.id : null,
       crownRole ? crownRole.id : null,
     );
-
-    client.db.blacklist.insertRow.run(
-      guild.id,
-      isBlacklisted ? 1 : 0,
-    );
     
     // Update users table
     guild.members.cache.forEach(member => {
