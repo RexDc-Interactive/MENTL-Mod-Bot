@@ -9,8 +9,8 @@ module.exports = (client, oldMember, newMember) => {
       memberLog.send(new MessageEmbed()
                           .setDescription(`A Nickname has changed`)
                           .addField('User', `${oldMember.tag}`)
-                          .addField('Old Nickname', `${oldMember.nickname} ? None : ${oldMember.nickname}`)
-                          .addField('New Nickname', `${newMember.nickname}`))   
+                          .addField('Old Nickname', oldMember.nickname ? '`None`' : oldMember.nickname)
+                          .addField('New Nickname', newMember.nickname))   
 	}
 	
 	
