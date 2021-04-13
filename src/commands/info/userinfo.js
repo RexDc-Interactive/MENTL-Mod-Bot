@@ -69,9 +69,9 @@ module.exports = class UserInfoCommand extends Command {
       .sort((a, b) => b.position - a.position).join(' ');
     
     const userStats = stripIndent`
-      Client Status  :: [${statuses[member.presence.clientStatus("desktop")]}] PC
-                     :: [${statuses[member.presence.clientStatus("mobile")]}] Mobile
-                     :: [${statuses[member.presence.clientStatus("web")]}] Web
+      Client Status  :: [${statuses[member.presence.clientStatus]}] PC
+                     :: [${statuses[member.presence.clientStatus]}] Mobile
+                     :: [${statuses[member.presence.clientStatus]}] Web
     `;
 
     const embed = new MessageEmbed()
