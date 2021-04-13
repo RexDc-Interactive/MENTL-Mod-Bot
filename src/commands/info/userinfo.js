@@ -35,7 +35,7 @@ module.exports = class UserInfoCommand extends Command {
       examples: ['userinfo @Nettles']
     });
   }
-  async run(client, message, args) {
+  async run(message, args) {
     const member =  this.getMemberFromMention(message, args[0]) || 
       message.guild.members.cache.get(args[0]) || 
       message.member;
@@ -90,6 +90,6 @@ module.exports = class UserInfoCommand extends Command {
     if (member.id === message.guild.owner.id) embed.addField('Is Owner?', 'True')
     else embed.addField('Is Owner?', 'False')
     message.channel.send(embed);
-		client.logger.info(member.presence.clientStatus)
+		console.log(member.presence.clientStatus)
   }
 };
