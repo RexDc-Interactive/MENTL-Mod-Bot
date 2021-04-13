@@ -35,7 +35,7 @@ module.exports = class UserInfoCommand extends Command {
       examples: ['userinfo @Nettles']
     });
   }
-  async run(message, args) {
+  async run(client, message, args) {
     const member =  this.getMemberFromMention(message, args[0]) || 
       message.guild.members.cache.get(args[0]) || 
       message.member;
