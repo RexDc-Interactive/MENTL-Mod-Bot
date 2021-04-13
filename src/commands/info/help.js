@@ -58,6 +58,18 @@ module.exports = class HelpCommand extends Command {
         commands[type] = [];
       }
 
+      const emojiMap = {
+        [INFO]: `${capitalize(INFO)}`,
+        [FUN]: `${capitalize(FUN)}`,
+        [COLOR]: `${capitalize(COLOR)}`,
+        [POINTS]: `${capitalize(POINTS)}`,
+        [MISC]: `${capitalize(MISC)}`,
+        [MOD]: `${capitalize(MOD)}`,
+        [ADMIN]: `${capitalize(ADMIN)}`,
+        [OWNER]: `${capitalize(OWNER)}`,
+        [BOTOWNER]: `${capitalize(BOTOWNER)}`
+      };
+
       message.client.commands.forEach(command => {
         if (!disabledCommands.includes(command.name)) {
           if (command.userPermissions && command.userPermissions.every(p => message.member.hasPermission(p)) && !all)
@@ -92,7 +104,7 @@ module.exports = class HelpCommand extends Command {
       for (const type of Object.values(message.client.types)) {
         if (type === BOTOWNER && !message.client.isOwner(message.member)) continue;
         if (commands[type][0])  
-          embed.addField(`**[${commands[type].length}]**`, commands[type].join(' '));
+          embed.addField(`**${emojiMap[type]} [${commands[type].length}]**`, commands[type].join(' '));
       }
 
       embed.addField(
