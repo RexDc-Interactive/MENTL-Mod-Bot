@@ -75,6 +75,7 @@ module.exports = class UserInfoCommand extends Command {
       .addField('Discriminator', `\`#${member.user.discriminator}\``, true)
       .addField('ID', `\`${member.id}\``, true)
       .addField('Status', statuses[member.presence.status], true)
+			.addField('Client Status', member.presence.clientStatus.entries())
       .addField('Bot', `\`${member.user.bot}\``, true)
       .addField('Color Role', member.roles.color || '`None`', true)
       .addField('Highest Role', member.roles.highest, true)
