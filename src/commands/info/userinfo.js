@@ -75,9 +75,6 @@ module.exports = class UserInfoCommand extends Command {
       .addField('Discriminator', `\`#${member.user.discriminator}\``, true)
       .addField('ID', `\`${member.id}\``, true)
       .addField('Status', statuses[member.presence.status], true)
-			.addField('PC Status',  `${member.presence.clientStatus.map(s => s.desktop)}`)
-			.addField('Mobile Status',  `${member.presence.clientStatus.map(s => s.mobile)}`)
-			.addField('Web Status',  `${member.presence.clientStatus.map(s => s.web)}`)
       .addField('Bot', `\`${member.user.bot}\``, true)
       .addField('Color Role', member.roles.color || '`None`', true)
       .addField('Highest Role', member.roles.highest, true)
@@ -93,5 +90,6 @@ module.exports = class UserInfoCommand extends Command {
     if (member.id === message.guild.owner.id) embed.addField('Is Owner?', 'True')
     else embed.addField('Is Owner?', 'False')
     message.channel.send(embed);
+		client.logger.info(member.presence.clientStatus)
   }
 };
