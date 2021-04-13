@@ -1,6 +1,5 @@
 const Command = require('../Command.js');
 const { MessageEmbed } = require('discord.js');
-const emojis = require('../../utils/emojis.json');
 const { oneLine, stripIndent } = require('common-tags');
 
 module.exports = class HelpCommand extends Command {
@@ -59,18 +58,6 @@ module.exports = class HelpCommand extends Command {
         commands[type] = [];
       }
 
-      const emojiMap = {
-        [INFO]: `${emojis.info} ${capitalize(INFO)}`,
-        [FUN]: `${emojis.fun} ${capitalize(FUN)}`,
-        [COLOR]: `${emojis.color} ${capitalize(COLOR)}`,
-        [POINTS]: `${emojis.points} ${capitalize(POINTS)}`,
-        [MISC]: `${emojis.misc} ${capitalize(MISC)}`,
-        [MOD]: `${emojis.mod} ${capitalize(MOD)}`,
-        [ADMIN]: `${emojis.admin} ${capitalize(ADMIN)}`,
-        [OWNER]: `${emojis.owner} ${capitalize(OWNER)}`,
-        [BOTOWNER]: `${emojis.owner} ${capitalize(BOTOWNER)}`
-      };
-
       message.client.commands.forEach(command => {
         if (!disabledCommands.includes(command.name)) {
           if (command.userPermissions && command.userPermissions.every(p => message.member.hasPermission(p)) && !all)
@@ -105,7 +92,7 @@ module.exports = class HelpCommand extends Command {
       for (const type of Object.values(message.client.types)) {
         if (type === BOTOWNER && !message.client.isOwner(message.member)) continue;
         if (commands[type][0])  
-          embed.addField(`**${emojiMap[type]} [${commands[type].length}]**`, commands[type].join(' '));
+          embed.addField(`**[${commands[type].length}]**`, commands[type].join(' '));
       }
 
       embed.addField(

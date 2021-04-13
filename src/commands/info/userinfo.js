@@ -3,25 +3,25 @@ const { MessageEmbed } = require('discord.js');
 const moment = require('moment');
 const emojis = require('../../utils/emojis.json');
 const statuses = {
-  online: `${emojis.online} \`Online\``,
-  idle: `${emojis.idle} \`AFK\``,
-  offline: `${emojis.offline} \`Offline\``,
-  dnd: `${emojis.dnd} \`Do Not Disturb\``
+  online: `Online`,
+  idle: `AFK`,
+  offline: `Offline`,
+  dnd: `Do Not Disturb`
 };
 const flags = {
-  DISCORD_EMPLOYEE: `${emojis.discord_employee} \`Discord Employee\``,
-  DISCORD_PARTNER: `${emojis.discord_partner} \`Partnered Server Owner\``,
-  BUGHUNTER_LEVEL_1: `${emojis.bughunter_level_1} \`Bug Hunter (Level 1)\``,
-  BUGHUNTER_LEVEL_2: `${emojis.bughunter_level_2} \`Bug Hunter (Level 2)\``,
-  HYPESQUAD_EVENTS: `${emojis.hypesquad_events} \`HypeSquad Events\``,
-  HOUSE_BRAVERY: `${emojis.house_bravery} \`House of Bravery\``,
-  HOUSE_BRILLIANCE: `${emojis.house_brilliance} \`House of Brilliance\``,
-  HOUSE_BALANCE: `${emojis.house_balance} \`House of Balance\``,
-  EARLY_SUPPORTER: `${emojis.early_supporter} \`Early Supporter\``,
+  DISCORD_EMPLOYEE: `Discord Employee`,
+  DISCORD_PARTNER: `Partnered Server Owner`,
+  BUGHUNTER_LEVEL_1: `Bug Hunter (Level 1)`,
+  BUGHUNTER_LEVEL_2: `Bug Hunter (Level 2)`,
+  HYPESQUAD_EVENTS: `HypeSquad Events`,
+  HOUSE_BRAVERY: `House of Bravery`,
+  HOUSE_BRILLIANCE: `House of Brilliance`,
+  HOUSE_BALANCE: `House of Balance`,
+  EARLY_SUPPORTER: `Early Supporter`,
   TEAM_USER: 'Team User',
   SYSTEM: 'System',
-  VERIFIED_BOT: `${emojis.verified_bot} \`Verified Bot\``,
-  VERIFIED_DEVELOPER: `${emojis.verified_developer} \`Early Verified Bot Developer\``
+  VERIFIED_BOT: `Verified Bot\``,
+  VERIFIED_DEVELOPER: `Early Verified Bot Developer`
 };
 
 module.exports = class UserInfoCommand extends Command {
@@ -68,6 +68,12 @@ module.exports = class UserInfoCommand extends Command {
     roles = message.client.utils.removeElement(roles, message.guild.roles.everyone)
       .sort((a, b) => b.position - a.position).join(' ');
     
+    const userStats = stripIndent`
+      Client Status  :: [${statuses[member.presence.clientStatus("desktop")]}] PC
+                     :: [${statuses[member.presence.clientStatus("mobile")]}] Mobile
+                     :: [${statuses[member.presence.clientStatus("web")]}] Web
+    `;
+
     const embed = new MessageEmbed()
       .setTitle(`${member.displayName}'s Information`)
       .setThumbnail(member.user.displayAvatarURL({ dynamic: true }))
@@ -75,12 +81,12 @@ module.exports = class UserInfoCommand extends Command {
       .addField('Discriminator', `\`#${member.user.discriminator}\``, true)
       .addField('ID', `\`${member.id}\``, true)
       .addField('Status', statuses[member.presence.status], true)
+			.addField('User Stats',  `\`\`\`asciidoc\n${userStats}\`\`\``)
       .addField('Bot', `\`${member.user.bot}\``, true)
       .addField('Color Role', member.roles.color || '`None`', true)
       .addField('Highest Role', member.roles.highest, true)
       .addField('Joined server on', `\`${moment(member.joinedAt).format('MMM DD YYYY')}\``, true)
-      .addField('Joined Discord on', `\`${moment(member.user.createdAt).format('MMM DD YYYY')}\``, true)
-      
+      .addField('Joined Discord on', `\`${moment(member.user.createdAt).format('MMM DD YYYY')}\``, true) 
       .addField('Roles', roles || '`None`')
       .setFooter(message.member.displayName,  message.author.displayAvatarURL({ dynamic: true }))
       .setTimestamp()
