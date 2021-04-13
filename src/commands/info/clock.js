@@ -16,7 +16,6 @@ module.exports = class AdminsCommand extends Command {
     message.channel.send(
         new MessageEmbed()
         .setTitle('Time around the World')
-		    .setThumbnail('https://vermonte.ml/mentl/globe.png')
         .setDescription("**America**" + "\n" +
                         "Los Angeles, USA - " + moment().tz("America/Los_Angeles").format("dddd h:mm a z") + "\n" +
                         "Denver, USA - " + moment().tz("America/Denver").format("dddd h:mm a z") + "\n" + 
