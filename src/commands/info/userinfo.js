@@ -91,6 +91,5 @@ module.exports = class UserInfoCommand extends Command {
     if (member.id === message.guild.owner.id) embed.addField('Is Owner?', 'True')
     else embed.addField('Is Owner?', 'False')
     message.channel.send(embed);
-		console.log(member.presence.clientStatus)
   }
 };
