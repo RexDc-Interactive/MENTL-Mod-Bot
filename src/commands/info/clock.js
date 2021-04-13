@@ -25,6 +25,7 @@ module.exports = class AdminsCommand extends Command {
                         "Puerto Rico, USA - " + moment().tz("America/Puerto_Rico").format("dddd h:mm a z") + "\n" +
                         "Sao Paulo, Brazil - " + moment().tz("America/Sao_Paulo").format("dddd h:mm a z") + "\n" + "\n" +
                         "**Europe**" + "\n" + 
+												"UTC - " + moment().tz("Etc/GMT").format("dddd h:mm a z") + "\n" +
                         "London, UK - " + moment().tz("Europe/London").format("dddd h:mm a z") + "\n" +
                         "Lisbon, Portugal - " + moment().tz("Europe/Lisbon").format("dddd h:mm a z") + "\n" +
                         "Paris, France - " + moment().tz("Europe/Paris").format("dddd h:mm a z") + "\n" +
