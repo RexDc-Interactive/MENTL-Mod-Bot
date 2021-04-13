@@ -1,7 +1,7 @@
 const Command = require('../Command.js');
 const { MessageEmbed } = require('discord.js');
 const moment = require('moment');
-const emojis = require('../../utils/emojis.json');
+const { stripIndent } = require('common-tags');
 const statuses = {
   online: `Online`,
   idle: `AFK`,
