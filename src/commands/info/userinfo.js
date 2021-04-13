@@ -67,12 +67,6 @@ module.exports = class UserInfoCommand extends Command {
     let roles = message.client.utils.trimArray(member.roles.cache.array().filter(r => !r.name.startsWith('#')));
     roles = message.client.utils.removeElement(roles, message.guild.roles.everyone)
       .sort((a, b) => b.position - a.position).join(' ');
-    
-    const userStats = stripIndent`
-      Client Status  :: [${statuses[member.presence.clientStatus]}] PC
-                     :: [${statuses[member.presence.clientStatus]}] Mobile
-                     :: [${statuses[member.presence.clientStatus]}] Web
-    `;
 
     const embed = new MessageEmbed()
       .setTitle(`${member.displayName}'s Information`)
@@ -81,7 +75,7 @@ module.exports = class UserInfoCommand extends Command {
       .addField('Discriminator', `\`#${member.user.discriminator}\``, true)
       .addField('ID', `\`${member.id}\``, true)
       .addField('Status', statuses[member.presence.status], true)
-			.addField('User Stats',  `\`\`\`asciidoc\n${userStats}\`\`\``)
+			.addField('Client Status',  `${member.presence.clientStatus}`)
       .addField('Bot', `\`${member.user.bot}\``, true)
       .addField('Color Role', member.roles.color || '`None`', true)
       .addField('Highest Role', member.roles.highest, true)
