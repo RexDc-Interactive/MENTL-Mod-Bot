@@ -1,3 +1,4 @@
+const Command = require('../Command.js');
 const { lookupUUID } = require('namemc');
 
 module.exports = class UserInfoCommand extends Command {
