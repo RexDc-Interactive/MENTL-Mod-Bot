@@ -1,4 +1,4 @@
-import { lookupName } from "namemc";
+const { lookupUUID } = require('namemc');
 
 module.exports = class UserInfoCommand extends Command {
   constructor(client) {
