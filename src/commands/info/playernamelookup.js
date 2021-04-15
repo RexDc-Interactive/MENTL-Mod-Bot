@@ -15,10 +15,10 @@ module.exports = class UserInfoCommand extends Command {
   }
   async run(message, args) {
 		const users = await lookupName(args[0]);
-
+		message.channel.send("These Players have or did have this name: ")
 		users.map(user => {
-			message.channel.send(user.currentName)
-			console.log(user)
+			message.channel.send("This players current name is: " + user.currentName)
+			message.channel.send("There UUID is" + user.uuid)
 		});
 	}
 }
