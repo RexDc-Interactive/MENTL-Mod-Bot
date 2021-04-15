@@ -1,6 +1,6 @@
 const Command = require('../Command.js');
 const ReactionMenu = require('../ReactionMenu.js');
-const { lookupUUID } = require('namemc');
+const { lookupName } = require('namemc');
 
 module.exports = class UserInfoCommand extends Command {
   constructor(client) {
