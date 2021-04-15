@@ -22,8 +22,7 @@ module.exports = class UserInfoCommand extends Command {
 			message.channel.send("There UUID is: " + user.uuid)
 			write.sync('user.txt', user, { newline: true });
 			message.channel.send("File attached with more info on users")
-			message.channel.send({files: ['user.txt']
-}) 
+			message.channel.send({files: ['user.txt']}) 
 		});
 	}
 }
