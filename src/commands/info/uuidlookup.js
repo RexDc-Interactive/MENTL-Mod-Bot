@@ -14,7 +14,7 @@ module.exports = class UserInfoCommand extends Command {
   }
   async run(message, args) {
 		const user = await lookupUUID(args[0]);
-		message.channel.send(user);
-		console.log(user);
+		message.channel.send(user.currentname);
+		console.log(user.currentname);
 	}
 }
