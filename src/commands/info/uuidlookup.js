@@ -14,6 +14,6 @@ module.exports = class UserInfoCommand extends Command {
   }
   async run(message, args) {
 		const user = await lookupUUID(args[0]);
-		message.channel.send("This UUID currently belongs to" + user.currentName);
+		message.channel.send("This UUID currently belongs to: " + user.currentName);
 	}
 }
