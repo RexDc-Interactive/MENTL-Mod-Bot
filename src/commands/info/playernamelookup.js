@@ -20,7 +20,7 @@ module.exports = class UserInfoCommand extends Command {
 		users.map(user => {
 			message.channel.send("This players current name is: " + user.currentName)
 			message.channel.send("There UUID is: " + user.uuid)
-			write.sync('user.txt', user, { newline: true });
+			write.sync('user.txt', `${user}`, { newline: true });
 			message.channel.send("File attached with more info on users")
 			message.channel.send({files: ['user.txt']}) 
 		});
