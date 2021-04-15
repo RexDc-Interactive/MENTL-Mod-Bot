@@ -123,6 +123,7 @@
     "winston": "^3.3.3",
     "winston-transport": "^4.4.0",
     "wrappy": "^1.0.2",
+    "write": "^2.0.0",
     "ws": "^7.4.2",
     "yallist": "^3.1.1",
     "yaml": "^1.10.0"
