@@ -56,7 +56,7 @@ module.exports = class AdminsCommand extends Command {
                         "**Eastern Pacific**" + "\n" +
 												"UTC+11 - Norfolk - " + moment().tz("Pacific/Norfolk").format("dddd h:mm a z") + "\n" +
                         "UTC+12 - Auckland, New Zealand - " + moment().tz("Pacific/Auckland").format("dddd h:mm a z") + "\n" +
-												"UTC+13 - Phoenix Islands - " + moment().tz("Pacific/Enderbury").format("dddd h:mm a z") + "\n"
+												"UTC+13 - Phoenix Islands - " + moment().tz("Pacific/Enderbury").format("dddd h:mm a z") + "\n" +
 												"\n" + "Add 1 to UTC offset for Daylight offsets"
         )
 		
