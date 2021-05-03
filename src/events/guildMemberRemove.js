@@ -18,7 +18,7 @@ module.exports = async (client, member) => {
   const mleaveLog = client.channels.cache.get(client.mleaveLogId);
   
   if (mleaveLog) {
-    if (target.id === member.id || kicklog) {
+    if (target.id === member.id) {
       mleaveLog.send(new MessageEmbed()
                         .setDescription(`Member was kicked from ${member.guild.name}`)
                         .addField('ID', `${member.user.id}`)
