@@ -16,7 +16,6 @@ module.exports = class AdminsCommand extends Command {
     message.channel.send(
         new MessageEmbed()
         .setTitle('Time around the World')
-				.setAuthor("Subtract 1 from UTC offset for Daylight offsets")
         .setDescription(
 					              "**Western Pacific**" + "\n" +
                         "UTC-11 - Midway Islands - " + moment().tz("Pacific/Midway").format("dddd h:mm a z") + "\n" +
@@ -55,7 +54,8 @@ module.exports = class AdminsCommand extends Command {
                         "UTC+10 - Melbourne, South Eastern Australia - " + moment().tz("Australia/Melbourne").format("dddd h:mm a z") + "\n" + "\n" +
                         "**Eastern Pacific**" + "\n" +
 												"UTC+11 - Norfolk - " + moment().tz("Pacific/Norfolk").format("dddd h:mm a z") + "\n" +
-                        "UTC+12 - Auckland, New Zealand - " + moment().tz("Pacific/Auckland").format("dddd h:mm a z")
+                        "UTC+12 - Auckland, New Zealand - " + moment().tz("Pacific/Auckland").format("dddd h:mm a z") + "\n" +
+												"\n" + "Add 1 to UTC offset for Daylight offsets"
         )
 		
         .setFooter(message.member.displayName, message.author.displayAvatarURL({ dynamic: true }))
