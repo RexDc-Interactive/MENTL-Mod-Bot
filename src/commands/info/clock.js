@@ -16,6 +16,7 @@ module.exports = class AdminsCommand extends Command {
     message.channel.send(
         new MessageEmbed()
         .setTitle('Time around the World')
+				.setAuthor("Subtract 1 from UTC offset for Daylight offsets")
         .setDescription(
 					              "**Western Pacific**" + "\n" +
                         "UTC-11 - Midway Islands - " + moment().tz("Pacific/Midway").format("dddd h:mm a z") + "\n" +
