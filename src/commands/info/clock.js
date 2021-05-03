@@ -47,7 +47,7 @@ module.exports = class AdminsCommand extends Command {
 												"UTC+7 - Tomsk, Asia" + moment().tz("Asia/Tomsk").format("dddd h:mm a z") + "\n" +
                         "UTC+8 - Shanghai, China - " + moment().tz("Asia/Shanghai").format("dddd h:mm a z") + "\n" +
 												"UTC+8 - Singapore, Asia" + moment().tz("Asia/Singapore").format("dddd h:mm a z") + "\n" +
-												"UTC+9 - Tokyo, Japan - " + moment().tz("	Asia/Tokyo").format("dddd h:mm a z") + "\n" + "\n" +
+												"UTC+9 - Tokyo, Japan - " + moment().tz("Asia/Tokyo").format("dddd h:mm a z") + "\n" + "\n" +
                         "**Australia**" + "\n" +
                         "UTC+8 - Perth, Western Australia - " + moment().tz("Australia/Perth").format("dddd h:mm a z") + "\n" +
 												"UTC+10 - Brisbane, North Eastern Australia - " + moment().tz("Australia/Brisbane").format("dddd h:mm a z") + "\n" +
