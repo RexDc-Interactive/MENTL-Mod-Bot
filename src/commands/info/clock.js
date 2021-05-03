@@ -27,8 +27,8 @@ module.exports = class AdminsCommand extends Command {
                         "UTC-7/UTC-6 - Denver, USA - " + moment().tz("America/Denver").format("dddd h:mm a z") + "\n" + 
                         "UTC-6/UTC-5 - Chicago, USA - " + moment().tz("America/Chicago").format("dddd h:mm a z") + "\n" +
                         "UTC-5/UTC-4 - New York, USA - " + moment().tz("America/New_York").format("dddd h:mm a z") + "\n" +
-                        "UTC-4/UTC-3 - Puerto Rico, USA - " + moment().tz("America/Puerto_Rico").format("dddd h:mm a z") + "\n" +
-                        "UTC-3/UTC-2 - Sao Paulo, Brazil - " + moment().tz("America/Sao_Paulo").format("dddd h:mm a z") + "\n" + "\n" +
+                        "UTC-4 - Puerto Rico, USA - " + moment().tz("America/Puerto_Rico").format("dddd h:mm a z") + "\n" +
+                        "UTC-3 - Sao Paulo, Brazil - " + moment().tz("America/Sao_Paulo").format("dddd h:mm a z") + "\n" + "\n" +
 												"**Atlantic**" + "\n" +
 												"UTC-2/UTC-1 - South Georgia - " + moment().tz("Atlantic/South_Georgia").format("dddd h:mm a z") + "\n" +
 												"UTC-1/UTC - Azores - " + moment().tz("Atlantic/Azores").format("dddd h:mm a z") + "\n" + "\n" + 
