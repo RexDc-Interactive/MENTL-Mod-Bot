@@ -16,17 +16,16 @@ module.exports = class UserInfoCommand extends Command {
   }
   async run(message, args) {
 		const users = await lookupName(args[0]);
-		message.channel.send("These Players have or did have this name: ")
 		users.map(user => {
 			message.channel.send(" ")
 			message.channel.send(user.currentName)
 			message.channel.send("===========")
 			user.pastNames.map(pastNames => {
-				const milliseconds = pastNames.changedAt // 1575909015000
+				const milliseconds = pastNames.changedAt
 				const dateObject = new Date(milliseconds)
-				const changedat = dateObject.toLocaleString() //2019-12-9 10:30:15
+				const changedat = dateObject.toLocaleString()
 				message.channel.send(pastNames.name + " - " + changedat)
+			})
 		})
-	})
 	}
 }
