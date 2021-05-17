@@ -24,7 +24,8 @@ module.exports = class UserInfoCommand extends Command {
 				const milliseconds = pastNames.changedAt
 				const dateObject = new Date(milliseconds)
 				const changedat = dateObject.toLocaleString()
-				message.channel.send(pastNames.name + " - " + `${changedat}`)
+				//message.channel.send(pastNames.name + " - " + `${changedat}`)
+				message.channel.send(pastNames.name + " - " + `${pastNames.changedAt}`)
 			})
 		})
 	}
