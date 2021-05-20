@@ -1,3 +1,4 @@
+const mySecret = process.env['token']
 const config = require('./config.json');
 const Client = require('./src/Client.js');
 const { Intents } = require('discord.js');
@@ -21,7 +22,7 @@ function init() {
   client.loadEvents('./src/events');
   client.loadCommands('./src/commands');
   client.loadTopics('./data/trivia');
-  client.login(client.token);
+  client.login(mySecret);
 }
 
 init();

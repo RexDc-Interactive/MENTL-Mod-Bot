@@ -35,6 +35,7 @@ class Client extends Discord.Client {
      */
     this.types = {
       INFO: 'info',
+			MINECRAFT: 'Minecraft',
       FUN: 'fun',
       MUSIC: 'music',
       COLOR: 'color',

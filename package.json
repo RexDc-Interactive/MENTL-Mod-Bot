@@ -62,6 +62,7 @@
     "isarray": "^1.0.0",
     "kuler": "^2.0.0",
     "logform": "^2.2.0",
+    "mc-player-api": "^1.0.0",
     "mime-db": "^1.45.0",
     "mime-types": "^2.1.28",
     "minimatch": "^3.0.4",
