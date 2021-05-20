@@ -26,7 +26,7 @@ module.exports = class HelpCommand extends Command {
     const all = (args[0] === 'all') ? args[0] : '';
     const embed = new MessageEmbed();
     const prefix = message.client.db.settings.selectPrefix.pluck().get(message.guild.id); // Get prefix
-    const { INFO, FUN, COLOR, POINTS, MISC, MOD, ADMIN, OWNER, BOTOWNER } = message.client.types;
+    const { INFO, MINECRAFT, FUN, COLOR, POINTS, MISC, MOD, ADMIN, OWNER, BOTOWNER } = message.client.types;
     const { capitalize } = message.client.utils;
     
     const command = message.client.commands.get(args[0]) || message.client.aliases.get(args[0]);
@@ -60,6 +60,7 @@ module.exports = class HelpCommand extends Command {
 
       const emojiMap = {
         [INFO]: `${capitalize(INFO)}`,
+				[MINECRAFT]: `${capitalize(MINECRAFT)}`,
         [FUN]: `${capitalize(FUN)}`,
         [COLOR]: `${capitalize(COLOR)}`,
         [POINTS]: `${capitalize(POINTS)}`,

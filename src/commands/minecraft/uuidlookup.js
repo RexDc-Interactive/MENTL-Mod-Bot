@@ -8,7 +8,7 @@ module.exports = class UserInfoCommand extends Command {
       aliases: ['uuid'],
       usage: 'uuid [player uuid]',
       description: 'Fetches from NameMC the playername of the UUID provided.',
-      type: client.types.INFO,
+      type: client.types.MINECRAFT,
       examples: ['userinfo @Nettles']
     });
   }
