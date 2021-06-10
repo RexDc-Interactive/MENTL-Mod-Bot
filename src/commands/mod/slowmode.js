@@ -33,7 +33,7 @@ module.exports = class SlowmodeCommand extends Command {
     `);
       
     const rate = args[index];
-    if (!rate || rate < 0 || rate > 59) return this.sendErrorMessage(message, 0, stripIndent`
+    if (!rate || rate < 0) return this.sendErrorMessage(message, 0, stripIndent`
       Please provide a rate limit between 0 and 59 seconds
     `);
 

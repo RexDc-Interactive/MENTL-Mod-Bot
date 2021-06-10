@@ -1,16 +1,33 @@
 const { MessageEmbed } = require('discord.js');
 
-module.exports = (client, message) => {
+module.exports = async (client, message) => {
   
+	if (!message.guild) return;
+	const fetchedLogs = await message.guild.fetchAuditLogs({
+		limit: 1,
+		type: 'MESSAGE_DELETE',
+	});
+
+	// Since there's only 1 audit log entry in this collection, grab the first one
+	const deletionLog = fetchedLogs.entries.first();
+
+	// Perform a coherence check to make sure that there's *something*
+	if (!deletionLog) return console.log(`A message by ${message.author.tag} was deleted, but no relevant audit logs were found.`);
+
+	// Now grab the user object of the person who deleted the message
+	// Also grab the target of this action to double-check things
+	const { executor, target } = deletionLog;
+
   // Check for webhook and that message is not empty
   if (message.webhookID || (!message.content && message.embeds.length === 0)) return;
   
   const embed = new MessageEmbed()
-    .setTitle('Message Update: `Delete`')
-    .setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true }))
-    .setTimestamp()
-    .setColor(message.guild.me.displayHexColor);
-  
+   	.setTitle('Message Update: `Delete`')
+   	.setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true }))
+		.addField('Moderator', executor.tag)
+   	.setTimestamp()
+   	.setColor(message.guild.me.displayHexColor);
+	
   // Message delete
   if (message.content) {
 
