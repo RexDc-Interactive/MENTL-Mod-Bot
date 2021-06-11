@@ -7,8 +7,8 @@ module.exports = class UserInfoCommand extends Command {
   constructor(client) {
     super(client, {
       name: 'namehistory',
-      aliases: ['playernamehistory'],
-      usage: 'mcname [playername]',
+      aliases: ['playernamehistory', 'namehist', 'mchist'],
+      usage: 'namehistory [playername]',
       description: 'Fetches from NameMC names matching the specified name.',
       type: client.types.MINECRAFT,
       examples: ['userinfo @Nettles']
