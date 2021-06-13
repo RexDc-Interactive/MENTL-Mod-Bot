@@ -5,7 +5,7 @@ const emojis = require('../utils/emojis.json');
 module.exports = async (client, guild, user) => {
     const fetchedLogs = await guild.fetchAuditLogs({
 		limit: 1,
-		type: 'MEMBER_BAN_ADD',
+		type: 22,
 	});
     
     const banLog = fetchedLogs.entries.first();
@@ -14,21 +14,13 @@ module.exports = async (client, guild, user) => {
 
     client.logger.info(`${user.guild.name}: ${user.tag} was banned from the server`);
     const mleaveLog = client.channels.cache.get(client.mleaveLogId);
-    if (target.id === user.id) {
-        if (mleaveLog) {
-            mleaveLog.send(new MessageEmbed()
-                            .setDescription(`${emojis.ban} Member was banned from ${member.guild.name}`)
-                            .addField('ID', `${user.id}`)
-                            .addField('Tag',`${user.tag}`)
-                            .addField('Moderator', `${executor.tag}`))
-        }
-    }
-    else {
+    if (mleaveLog) {
         mleaveLog.send(new MessageEmbed()
-                            .setDescription(`${emojis.ban} Member was banned from ${member.guild.name}`)
-                            .addField('ID', `${user.id}`)
-                            .addField('Tag',`${user.tag}`))
-    }
+                          .setDescription(`${emojis.ban} Member was banned from ${member.guild.name}`)
+                          .addField('ID', `${user.id}`)
+                          .addField('Tag',`${user.tag}`)
+                          .addField('Moderator', `${executor.tag}`))
+		}
 
    /** ------------------------------------------------------------------------------------------------
    * MEMBER LOG

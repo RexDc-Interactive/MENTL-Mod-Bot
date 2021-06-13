@@ -5,7 +5,7 @@ const emojis = require('../utils/emojis.json');
 module.exports = async (client, member) => {
   const fetchedLogs = await member.guild.fetchAuditLogs({
 		limit: 1,
-		type: 'MEMBER_KICK',
+		type: 20,
 	});
   
   const kickLog = fetchedLogs.entries.first();

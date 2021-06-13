@@ -5,7 +5,7 @@ module.exports = async (client, message) => {
 	if (!message.guild) return;
 	const fetchedLogs = await message.guild.fetchAuditLogs({
 		limit: 1,
-		type: 'MESSAGE_DELETE',
+		type: 72,
 	});
 
 	// Since there's only 1 audit log entry in this collection, grab the first one
