@@ -76,8 +76,6 @@ module.exports = async(client, oldMember, newMember) => {
     
   const memberroleupdateLog = fetchedroleLogs.entries.first();
     
-  const { rolechangeexecutor } = memberroleupdateLog;
-
   // Role add
   if (oldMember.roles.cache.size < newMember.roles.cache.size) {
     // Get role log
@@ -91,7 +89,7 @@ module.exports = async(client, oldMember, newMember) => {
       const role = newMember.roles.cache.difference(oldMember.roles.cache).first();
       embed
         .setTitle('Member Update: `Role Add`')
-        .setDescription(`${newMember} was **given** the ${role}  by ${rolechangeexecutor}.`);
+        .setDescription(`${newMember} was **given** the ${role}  by ${memberroleupdateLog.executor}.`);
       roleLog.send(embed);
     }
   }
