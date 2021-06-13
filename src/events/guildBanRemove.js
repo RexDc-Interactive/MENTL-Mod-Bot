@@ -3,7 +3,7 @@ const { MessageEmbed } = require('discord.js');
 module.exports = async(client, member) => {
     const fetchedLogs = await guild.fetchAuditLogs({
 		limit: 1,
-		type: 22,
+		type: 23,
 	});
     
     const banLog = fetchedLogs.entries.first();

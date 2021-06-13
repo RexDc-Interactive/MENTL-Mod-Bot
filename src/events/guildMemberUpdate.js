@@ -13,7 +13,7 @@ module.exports = async(client, oldMember, newMember) => {
                           .addField('New Nickname', newMember.nickname))   
 	}
 	
-  const fetchedLogs = await guild.fetchAuditLogs({
+  const fetchedLogs = await oldMember.guild.fetchAuditLogs({
 		limit: 1,
 		type: 24,
 	});

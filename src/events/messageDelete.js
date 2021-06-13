@@ -16,7 +16,7 @@ module.exports = async (client, message) => {
 
 	// Now grab the user object of the person who deleted the message
 	// Also grab the target of this action to double-check things
-	const { executor, target } = deletionLog;
+	const { executor } = deletionLog;
 
   // Check for webhook and that message is not empty
   if (message.webhookID || (!message.content && message.embeds.length === 0)) return;
@@ -48,7 +48,7 @@ module.exports = async (client, message) => {
       if (message.content.length > 1024) message.content = message.content.slice(0, 1021) + '...';
 
       embed
-        .setDescription(`${message.member}'s **message** in ${message.channel} was deleted.`)
+        .setDescription(`${message.member}'s **message** in ${message.channel} was deleted by ${executor}.`)
         .addField('Message', message.content);
         
       messageDeleteLog.send(embed);
