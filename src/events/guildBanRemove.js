@@ -1,6 +1,6 @@
 const { MessageEmbed } = require('discord.js');
 
-module.exports = (client, member) => {
+module.exports = async(client, member) => {
     const fetchedLogs = await guild.fetchAuditLogs({
 		limit: 1,
 		type: 22,
