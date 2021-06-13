@@ -1,6 +1,6 @@
 const { MessageEmbed } = require('discord.js');
 
-module.exports = (client, oldMember, newMember) => {
+module.exports = async(client, oldMember, newMember) => {
   
   if (oldMember.nickname != newMember.nickname) {
 		client.logger.info(`${oldMember.nickname} nickname changed to ${newMember.nickname}`);
