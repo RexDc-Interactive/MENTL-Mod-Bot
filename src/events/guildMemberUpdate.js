@@ -69,12 +69,12 @@ module.exports = async(client, oldMember, newMember) => {
 		}
 	}
 
-  const fetchedLogs = await oldMember.guild.fetchAuditLogs({
+  const fetchedroleLogs = await oldMember.guild.fetchAuditLogs({
 		limit: 1,
 		type: 25,
 	});
     
-  const memberroleupdateLog = fetchedLogs.entries.first();
+  const memberroleupdateLog = fetchedroleLogs.entries.first();
     
   const { executor, target } = memberroleupdateLog;
 
