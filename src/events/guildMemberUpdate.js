@@ -107,7 +107,7 @@ module.exports = async(client, oldMember, newMember) => {
       const role = oldMember.roles.cache.difference(newMember.roles.cache).first();
       embed
         .setTitle('Member Update: `Role Remove`')
-        .setDescription(`${newMember} was **removed** from ${role} role by ${executor}.`);
+        .setDescription(`${newMember} was **removed** from ${role} role by ${memberroleupdateLog.executor}.`);
       roleLog.send(embed);
     }
   }
