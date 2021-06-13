@@ -13,7 +13,7 @@ module.exports = async(client, oldMember, newMember) => {
                           .addField('New Nickname', newMember.nickname))   
 	}
 	
-  const fetchedLogs = await oldMember.guild.fetchAuditLogs({
+ const fetchedLogs = await oldMember.guild.fetchAuditLogs({
 		limit: 1,
 		type: 24,
 	});
@@ -68,6 +68,15 @@ module.exports = async(client, oldMember, newMember) => {
 			}
 		}
 	}
+
+  const fetchedLogs = await oldMember.guild.fetchAuditLogs({
+		limit: 1,
+		type: 25,
+	});
+    
+  const memberroleupdateLog = fetchedLogs.entries.first();
+    
+  const { executor, target } = memberroleupdateLog;
 
   // Role add
   if (oldMember.roles.cache.size < newMember.roles.cache.size) {
