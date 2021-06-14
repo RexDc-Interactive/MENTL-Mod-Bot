@@ -48,9 +48,10 @@ module.exports = async (client, member) => {
   ) {
     if (target.id === member.id) {
       const embed = new MessageEmbed()
-        .setTitle('Member Left')
+        .setTitle('Member was Kicked')
         .setAuthor(`${member.guild.name}`, member.guild.iconURL({ dynamic: true }))
         .setThumbnail(member.user.displayAvatarURL({ dynamic: true }))
+				.addField("Moderator", `${executor.tag}`)
         .setDescription(`${member} (**${member.user.tag}**)`)
         .setTimestamp()
         .setColor(member.guild.me.displayHexColor);
@@ -58,12 +59,11 @@ module.exports = async (client, member) => {
     }
     else {
       const embed = new MessageEmbed()
-        .setTitle('Member was Kicked')
+        .setTitle('Member Left')
         .setAuthor(`${member.guild.name}`, member.guild.iconURL({ dynamic: true }))
         .setThumbnail(member.user.displayAvatarURL({ dynamic: true }))
         .setDescription(`${member} (**${member.user.tag}**)`)
         .setTimestamp()
-        .setFooter(`${executor.tag}`)
         .setColor(member.guild.me.displayHexColor);
       memberLog.send(embed);
     }
