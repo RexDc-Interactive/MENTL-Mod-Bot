@@ -1,6 +1,7 @@
 const Command = require('../Command.js');
 const { MessageEmbed } = require('discord.js');
 const ms = require('ms');
+const config = require('../../../config.json')
 
 module.exports = class MuteCommand extends Command {
   constructor(client) {
@@ -26,9 +27,11 @@ module.exports = class MuteCommand extends Command {
       return this.sendErrorMessage(message, 0, 'Please mention a user or provide a valid user ID');
     if (member === message.member)
       return this.sendErrorMessage(message, 0, 'You cannot mute yourself');
+		if (user.id === config.ownerId[0] || user.id === config.ownerId[1])
+			return this.SendErrorMessage(message, 0, 'You cannot mute my owners');
     if (member === message.guild.me) return this.sendErrorMessage(message, 0, 'You cannot mute me');
     if (member.roles.highest.position >= message.member.roles.highest.position)
-      return this.sendErrorMessage(message, 0, 'You cannot mute someone with an equal or higher role');
+      return this.sendErrorMessage(message, 0, 'I cannot mute someone with an equal or higher role');
     if (!args[1])
       return this.sendErrorMessage(message, 0, 'Please enter a length of time of 14 days or less (1s/m/h/d)');
     let time = ms(args[1]);
