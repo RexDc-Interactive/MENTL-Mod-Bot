@@ -15,7 +15,7 @@ module.exports = class BanCommand extends Command {
   }
   async run(message, args) {
 
-    const user = message.client.users.fetch(args[0}, true, true);
+    const user = message.client.users.fetch(args[0], true, true);
     if (!user)
       return this.sendErrorMessage(message, 0, 'Please mention a user or provide a valid user ID');
     if (user === message.member)
