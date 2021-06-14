@@ -14,10 +14,10 @@ module.exports = class BanCommand extends Command {
     });
   }
   async run(message, args) {
-
-    const user = message.client.users.cache.find(user => user.id === args[0]);
-    if (!user)
-      return this.sendErrorMessage(message, 0, 'Please mention a user or provide a valid user ID');
+    const user = await message.client.users.fetch(args[0], true, true);
+    console.log(user);
+		if (!user)
+      //return this.sendErrorMessage(message, 0, 'Please mention a user or provide a valid user ID');
     if (user === message.member)
       return this.sendErrorMessage(message, 0, 'You cannot ban yourself'); 
 
@@ -26,8 +26,6 @@ module.exports = class BanCommand extends Command {
     if (reason.length > 1024) reason = reason.slice(0, 1021) + '...';
     
     await message.guild.members.ban(user, { reason: reason })
-		.then(user => console.log(`Banned ${user.username || user.id || user} from ${guild.name}`))
-  	.catch(console.error);;
 
     const embed = new MessageEmbed()
       .setTitle('Ban Member')
