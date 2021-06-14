@@ -17,11 +17,12 @@ module.exports = async (client, message) => {
 	// Now grab the user object of the person who deleted the message
 	// Also grab the target of this action to double-check things
 	const { executor, target } = deletionLog;
+	const embed = new MessageEmbed()
 
   // Check for webhook and that message is not empty
   if (message.webhookID || (!message.content && message.embeds.length === 0)) return;
   if (target.id === message.author.id) {
-		 const embed = new MessageEmbed()
+		 embed
    	 .setTitle('Message Update: `Delete`')
    	 .setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true }))
 		 .addField('Moderator', executor.tag)
@@ -29,7 +30,7 @@ module.exports = async (client, message) => {
    	 .setColor(message.guild.me.displayHexColor);
 	}
 	else {
-		  const embed = new MessageEmbed()
+		  embed
    	  .setTitle('Message Update: `Delete`')
    	  .setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true }))
    	  .setTimestamp()
