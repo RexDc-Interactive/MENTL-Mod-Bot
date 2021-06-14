@@ -22,7 +22,7 @@ module.exports = class KickCommand extends Command {
     if (member === message.member) 
       return this.sendErrorMessage(message, 0, 'You cannot kick yourself'); 
 		if (member.id === config.ownerId[0] || member.id === config.ownerId[1])
-			return this.SendErrorMessage(message, 0, 'You cannot kick my owners');
+			return this.sendErrorMessage(message, 0, 'You cannot kick my owners');
     if (member.roles.highest.position >= message.member.roles.highest.position)
       return this.sendErrorMessage(message, 0, 'You cannot kick someone with an equal or higher role');
     if (!member.kickable) 

@@ -22,7 +22,7 @@ module.exports = class BanCommand extends Command {
     if (user === message.member)
       return this.sendErrorMessage(message, 0, 'You cannot ban yourself');
 		if (user.id === config.ownerId[0] || user.id === config.ownerId[1])
-			return this.SendErrorMessage(message, 0, 'You cannot ban my owners');
+			return this.sendErrorMessage(message, 0, 'You cannot ban my owners');
 
     let reason = args.slice(1).join(' ');
     if (!reason) reason = '`None`';
