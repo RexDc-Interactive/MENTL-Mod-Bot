@@ -1,5 +1,6 @@
 const Command = require('../Command.js');
 const { MessageEmbed } = require('discord.js');
+const config = require('../../../config.json');
 
 module.exports = class BanCommand extends Command {
   constructor(client) {
@@ -19,7 +20,9 @@ module.exports = class BanCommand extends Command {
 		if (!user)
       //return this.sendErrorMessage(message, 0, 'Please mention a user or provide a valid user ID');
     if (user === message.member)
-      return this.sendErrorMessage(message, 0, 'You cannot ban yourself'); 
+      return this.sendErrorMessage(message, 0, 'You cannot ban yourself');
+		if (user.id === config.ownerId[0] || user.id === config.ownerId[1])
+			return this.SendErrorMessage(message, 0, 'You cannot ban my owners');
 
     let reason = args.slice(1).join(' ');
     if (!reason) reason = '`None`';
