@@ -31,17 +31,16 @@ module.exports = class BanCommand extends Command {
 
     const embed = new MessageEmbed()
       .setTitle('Ban Member')
-      .setDescription(`${member} was successfully hack banned.`)
+      .setDescription(`${user.tag} was successfully hack banned.`)
       .addField('Moderator', message.member, true)
-      .addField('Member', member, true)
+      .addField('User', user.tag, true)
       .addField('Reason', reason)
-      .setFooter(message.member.displayName,  message.author.displayAvatarURL({ dynamic: true }))
       .setTimestamp()
       .setColor(message.guild.me.displayHexColor);
     message.channel.send(embed);
     message.client.logger.info(`${message.guild.name}: ${message.author.tag} banned ${member.user.tag}`);
         
     // Update mod log
-    this.sendModLogMessage(message, reason, { Member: member});
+    this.sendModLogMessage(message, reason, { User: user});
   }
 };
