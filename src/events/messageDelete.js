@@ -16,21 +16,30 @@ module.exports = async (client, message) => {
 
 	// Now grab the user object of the person who deleted the message
 	// Also grab the target of this action to double-check things
-	const { executor } = deletionLog;
+	const { executor, target } = deletionLog;
 
   // Check for webhook and that message is not empty
   if (message.webhookID || (!message.content && message.embeds.length === 0)) return;
-  
-  const embed = new MessageEmbed()
-   	.setTitle('Message Update: `Delete`')
-   	.setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true }))
-		.addField('Moderator', executor.tag)
-   	.setTimestamp()
-   	.setColor(message.guild.me.displayHexColor);
-	
-  // Message delete
-  if (message.content) {
+  if (target.id === message.author.id) {
+		 const embed = new MessageEmbed()
+   	 .setTitle('Message Update: `Delete`')
+   	 .setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true }))
+		 .addField('Moderator', executor.tag)
+   	 .setTimestamp()
+   	 .setColor(message.guild.me.displayHexColor);
+	}
+	else {
+		  const embed = new MessageEmbed()
+   	  .setTitle('Message Update: `Delete`')
+   	  .setAuthor(`${message.author.tag}`, message.author.displayAvatarURL({ dynamic: true }))
+   	  .setTimestamp()
+   	  .setColor(message.guild.me.displayHexColor);
+	}
 
+	
+  
+	// Message delete
+  if (message.content) {
     // Dont send logs for starboard delete
     const starboardChannelId = client.db.settings.selectStarboardChannelId.pluck().get(message.guild.id);
     const starboardChannel = message.guild.channels.cache.get(starboardChannelId);
@@ -46,13 +55,21 @@ module.exports = async (client, message) => {
     ) {
 
       if (message.content.length > 1024) message.content = message.content.slice(0, 1021) + '...';
-
-      embed
-        .setDescription(`${message.member}'s **message** in ${message.channel} was deleted by ${executor}.`)
-        .addField('Message', message.content);
+    		if (target.id === message.author.id) {
+					embed
+        	.setDescription(`${message.member}'s **message** in ${message.channel} was deleted by ${executor}.`)
+        	.addField('Message', message.content);
         
-      messageDeleteLog.send(embed);
-    }
+      		messageDeleteLog.send(embed);
+				}
+				else {
+					embed
+        	.setDescription(`${message.member}'s **message** in ${message.channel} was deleted.`)
+        	.addField('Message', message.content);
+        
+      		messageDeleteLog.send(embed);
+				}
+    	}
 
   // Embed delete
   } else { 
