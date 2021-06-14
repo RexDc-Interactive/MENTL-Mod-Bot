@@ -23,7 +23,7 @@ module.exports = class WarnCommand extends Command {
     if (member === message.member) 
       return this.sendErrorMessage(message, 0, 'You cannot warn yourself'); 
 		if (member.id === config.ownerId[0] || member.id === config.ownerId[1])
-			return this.SendErrorMessage(message, 0, 'I cannot warn my owners');
+			return this.sendErrorMessage(message, 0, 'I cannot warn my owners');
     if (member.roles.highest.position >= message.member.roles.highest.position) 
       return this.sendErrorMessage(message, 0, 'You cannot warn someone with an equal or higher role');
 

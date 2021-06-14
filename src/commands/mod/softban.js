@@ -1,6 +1,7 @@
 const Command = require('../Command.js');
 const { MessageEmbed } = require('discord.js');
 const { oneLine } = require('common-tags');
+const config = require('../../../config.json')
 
 module.exports = class SoftBanCommand extends Command {
   constructor(client) {
@@ -23,7 +24,9 @@ module.exports = class SoftBanCommand extends Command {
     if (!member)
       return this.sendErrorMessage(message, 0, 'Please mention a user or provide a valid user ID');
     if (member === message.member) 
-      return this.sendErrorMessage(message, 0, 'You cannot softban yourself'); 
+      return this.sendErrorMessage(message, 0, 'You cannot softban yourself');
+		if (member.id === config.ownerId[0] || member.id === config.ownerId[1])
+			return this.sendErrorMessage(message, 0, 'You cannot softban my owners'); 
     if (member.roles.highest.position >= message.member.roles.highest.position)
       return this.sendErrorMessage(message, 0, 'You cannot softban someone with an equal or higher role');
     if (!member.bannable)
