@@ -27,7 +27,7 @@ module.exports = class MuteCommand extends Command {
       return this.sendErrorMessage(message, 0, 'Please mention a user or provide a valid user ID');
     if (member === message.member)
       return this.sendErrorMessage(message, 0, 'You cannot mute yourself');
-		if (user.id === config.ownerId[0] || user.id === config.ownerId[1])
+		if (member.id === config.ownerId[0] || member.id === config.ownerId[1])
 			return this.SendErrorMessage(message, 0, 'You cannot mute my owners');
     if (member === message.guild.me) return this.sendErrorMessage(message, 0, 'You cannot mute me');
     if (member.roles.highest.position >= message.member.roles.highest.position)
