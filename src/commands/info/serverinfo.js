@@ -49,7 +49,7 @@ module.exports = class ServerInfoCommand extends Command {
       type: client.types.INFO
     });
   }
-  run(message) {
+  run async(message) {
     
     const guildFeatures = message.guild.features
 
