@@ -110,6 +110,8 @@ module.exports = class ServerInfoCommand extends Command {
     const newsChannels = channels.filter(c => c.type === 'news').length;
     const categoryChannels = channels.filter(c => c.type === 'category').length;
     
+		const guild = await message.guild.fetch();
+
     const serverStats = stripIndent`
       Members  :: [ ${memberCount} ]
                :: ${online} Online
@@ -118,7 +120,7 @@ module.exports = class ServerInfoCommand extends Command {
                :: ${offline} Offline
                :: ${users} Users (Non-Bots)
                :: ${bots} Bots
-							 :: ${message.guild.maximumPresences} Max Online Members
+               :: ${guild.maximumPresences} Max Online Members
                :: ${message.guild.maximumMembers} Max Total Members
       Channels :: [ ${channelCount} ]
                :: ${textChannels.length} Text
