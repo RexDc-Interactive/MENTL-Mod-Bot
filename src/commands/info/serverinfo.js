@@ -118,7 +118,8 @@ module.exports = class ServerInfoCommand extends Command {
                :: ${offline} Offline
                :: ${users} Users (Non-Bots)
                :: ${bots} Bots
-               :: ${message.guild.maximumMembers} Max Members
+							 :: ${message.guild.maximumPresences} Max Online Members
+               :: ${message.guild.maximumMembers} Max Total Members
       Channels :: [ ${channelCount} ]
                :: ${textChannels.length} Text
                :: ${voiceChannels} Voice
