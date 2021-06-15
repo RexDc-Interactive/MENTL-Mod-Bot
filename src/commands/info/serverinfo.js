@@ -39,7 +39,7 @@ const notifications = {
   MENTIONS: '`Mentions`'
 };
 
-module.exports = async class ServerInfoCommand extends Command {
+module.exports = class ServerInfoCommand extends Command {
   constructor(client) {
     super(client, {
       name: 'serverinfo',
@@ -49,7 +49,7 @@ module.exports = async class ServerInfoCommand extends Command {
       type: client.types.INFO
     });
   }
-  run (message) {
+  async run (message) {
     
     const guildFeatures = message.guild.features
 
