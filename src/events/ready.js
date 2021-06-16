@@ -96,8 +96,7 @@ module.exports = async (client) => {
 			username,
 			userdiscrim,
 			guild.id,
-			guild.name,
-			reason
+			guild.name
 		);
 
     /** ------------------------------------------------------------------------------------------------

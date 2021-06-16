@@ -101,7 +101,6 @@ db.prepare(`
     user_discriminator TEXT,
     guild_id TEXT,
     guild_name TEXT,
-    ban_reason TEXT,
     PRIMARY KEY (user_id, guild_id)
   );
 `).run();
@@ -290,9 +289,8 @@ const bannedusers = {
       user_name,
       user_discriminator,
       guild_id, 
-      guild_name, 
-			ban_reason
-    ) VALUES (?, ?, ?, ?, ?, ?);
+      guild_name 
+    ) VALUES (?, ?, ?, ?, ?);
   `),
 
   // Selects
