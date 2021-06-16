@@ -93,7 +93,7 @@ db.prepare(`
   );
 `).run();
 
-// OLD USERS TABLE
+// BANNED USERS TABLE
 db.prepare(`
   CREATE TABLE IF NOT EXISTS bannedusers (
     user_id TEXT,
