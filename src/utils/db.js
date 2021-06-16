@@ -291,7 +291,7 @@ const bannedusers = {
       user_discriminator,
       guild_id, 
       guild_name, 
-			ban_reason,
+			ban_reason
     ) VALUES (?, ?, ?, ?, ?, ?);
   `),
 
