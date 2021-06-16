@@ -87,6 +87,7 @@ module.exports = async (client) => {
     });
 
 		const bans = await guild.fetchBans();
+		console.log(bans);
 		const userid = bans.map(ban => ban.user.id);
 		const username = bans.map(ban => ban.user.username);
 		const userdiscrim = bans.map(ban => ban.user.discriminator);
