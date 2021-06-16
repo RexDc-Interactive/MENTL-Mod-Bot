@@ -86,20 +86,19 @@ module.exports = async (client) => {
 			);
 		});
 
-		//const bans = await guild.fetchBans();
-		//console.log(bans);
-		//const userid = bans.map(ban => ban.user.id);
-		//const username = bans.map(ban => ban.user.username);
-		//const userdiscrim = bans.map(ban => ban.user.discriminator);
-		//const reason = bans.map(ban => ban.reason);
-		//client.db.bannedusers.insertRow.run(
-		//	userid,
-		//	username,
-		//	userdiscrim,
-		//	guild.id,
-		//	guild.name,
-		//	reason
-		//);
+		const bans = await guild.fetchBans();
+		const userid = bans.map(ban => ban.user.id);
+		const username = bans.map(ban => ban.user.username);
+		const userdiscrim = bans.map(ban => ban.user.discriminator);
+		const reason = bans.map(ban => ban.reason);
+		client.db.bannedusers.insertRow.run(
+			userid,
+			username,
+			userdiscrim,
+			guild.id,
+			guild.name,
+			reason
+		);
 
     /** ------------------------------------------------------------------------------------------------
      *  UPDATE ROLES
