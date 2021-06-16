@@ -101,8 +101,7 @@ db.prepare(`
     user_discriminator TEXT,
     guild_id TEXT,
     guild_name TEXT,
-    ban_reason TEXT,
-		banned_member INTEGER NOT NULL,
+    ban_reason TEXT
     PRIMARY KEY (user_id, guild_id)
   );
 `).run();
@@ -293,17 +292,14 @@ const bannedusers = {
       guild_id, 
       guild_name, 
 			ban_reason,
-      banned_member
-    ) VALUES (?, ?, ?, ?, ?, ?, 1);
+    ) VALUES (?, ?, ?, ?, ?, ?);
   `),
 
   // Selects
   selectRow: db.prepare('SELECT * FROM bannedusers WHERE user_id = ? AND guild_id = ?;'),
-  selectBannedMembers: db.prepare('SELECT * FROM bannedusers WHERE guild_id = ? AND banned_member = 1;'),
 
   // Updates
 	updateBanReason: db.prepare('UPDATE bannedusers SET ban_reason = ? WHERE user_id = ? AND guild_id = ?;'),
-  updateBannedMember: db.prepare('UPDATE bannedusers SET banned_member = ? WHERE user_id = ? AND guild_id = ?;'),
   deleteGuild: db.prepare('DELETE FROM bannedusers WHERE guild_id = ?;')
 };
 
