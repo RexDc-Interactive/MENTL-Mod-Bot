@@ -27,7 +27,7 @@ module.exports = async (client, guild, user) => {
    * ------------------------------------------------------------------------------------------------ */
   // Get member log
   const memberLogId = client.db.settings.selectMemberLogId.pluck().get(member.guild.id);
-  const memberLog = member.guild.channels.cache.get(memberLogId);
+  const memberLog = guild.channels.cache.get(memberLogId);
   if (
     memberLog &&
     memberLog.viewable &&
@@ -35,12 +35,29 @@ module.exports = async (client, guild, user) => {
   ) {
     const embed = new MessageEmbed()
       .setTitle('Member was Banned')
-      .setAuthor(`${member.guild.name}`, member.guild.iconURL({ dynamic: true }))
-      .setThumbnail(member.user.displayAvatarURL({ dynamic: true }))
-      .setDescription(`${member} (**${member.user.tag}**)`)
+      .setAuthor(`${guild.name}`, guild.iconURL({ dynamic: true }))
+      .setThumbnail(user.displayAvatarURL({ dynamic: true }))
+      .setDescription(`${user} (**${user.tag}**)`)
       .setTimestamp()
       .setFooter(`${executor.tag}`)
-      .setColor(member.guild.me.displayHexColor);
+      .setColor(guild.me.displayHexColor);
     memberLog.send(embed);
   }
+
+	/** ------------------------------------------------------------------------------------------------
+   * BANNED USERS TABLE
+   * ------------------------------------------------------------------------------------------------ */ 
+  // Update users table
+  client.db.deleteMember.run(user.id);
+
+	client.db.bannedusers.insertRow.run(
+    user.id, 
+    user.username, 
+    user.discriminator,
+    guild.id, 
+    guild.name,
+    member.joinedAt.toString(),
+    member.user.bot ? 1 : 0
+  );
+  client.db.oldusers.updateBannedMember.run(1, member.id, member.guild.id);
 }

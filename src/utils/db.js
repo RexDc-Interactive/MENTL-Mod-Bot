@@ -93,13 +93,19 @@ db.prepare(`
   );
 `).run();
 
-// BLACKLIST TABLE
+// OLD USERS TABLE
 db.prepare(`
-    CREATE TABLE IF NOT EXISTS blacklist (
-      guild_id TEXT,
-      is_blacklisted INTEGER,
-      PRIMARY KEY (guild_id)
-    )
+  CREATE TABLE IF NOT EXISTS bannedusers (
+    user_id TEXT,
+    user_name TEXT,
+    user_discriminator TEXT,
+    guild_id TEXT,
+    guild_name TEXT,
+    date_joined TEXT,
+    ban_reason TEXT,
+		banned_member INTEGER NOT NULL,
+    PRIMARY KEY (user_id, guild_id)
+  );
 `).run();
 
 /** ------------------------------------------------------------------------------------------------
@@ -271,16 +277,40 @@ const oldusers = {
 
   // Selects
   selectRow: db.prepare('SELECT * FROM oldusers WHERE user_id = ? AND guild_id = ?;'),
-  selectFormerMembers: db.prepare('SELECT * FROM oldusers WHERE guild_id = ? AND former_member = 0;'),
-  selectMissingMembers: db.prepare('SELECT * FROM oldusers WHERE guild_id = ? AND former_member = 1;'),
+  selectFormerMembers: db.prepare('SELECT * FROM oldusers WHERE guild_id = ? AND former_member = 1;'),
 
   // Updates
   updateFormerMember: db.prepare('UPDATE oldusers SET former_member = ? WHERE user_id = ? AND guild_id = ?;'),
   deleteGuild: db.prepare('DELETE FROM oldusers WHERE guild_id = ?;')
 };
 
+// BANNED USERS TABLE
+const bannedusers = {
+  insertRow: db.prepare(`
+    INSERT OR IGNORE INTO bannedusers (
+      user_id, 
+      user_name,
+      user_discriminator,
+      guild_id, 
+      guild_name, 
+			ban_reason,
+      banned_member
+    ) VALUES (?, ?, ?, ?, ?, ?, 1);
+  `),
+
+  // Selects
+  selectRow: db.prepare('SELECT * FROM bannedusers WHERE user_id = ? AND guild_id = ?;'),
+  selectBannedMembers: db.prepare('SELECT * FROM bannedusers WHERE guild_id = ? AND banned_member = 1;'),
+
+  // Updates
+	updateBanReason: db.prepare('UPDATE bannedusers SET ban_reason = ? WHERE user_id = ? AND guild_id = ?;'),
+  updateBannedMember: db.prepare('UPDATE bannedusers SET banned_member = ? WHERE user_id = ? AND guild_id = ?;'),
+  deleteGuild: db.prepare('DELETE FROM bannedusers WHERE guild_id = ?;')
+};
+
 module.exports = {
   settings,
   users,
-  oldusers
+  oldusers,
+	bannedusers
 };
