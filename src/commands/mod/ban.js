@@ -33,6 +33,7 @@ module.exports = class BanCommand extends Command {
     if (reason.length > 1024) reason = reason.slice(0, 1021) + '...';
     
     await member.ban({ reason: reason });
+		message.client.db.setBanReason.run(reason, member.id, guild.id);
 
     const embed = new MessageEmbed()
       .setTitle('Ban Member')

@@ -13,6 +13,14 @@ module.exports = async (client, member) => {
   if (member.user === client.user) return;
 
   const { executor, target } = kickLog;
+	const banned = "";
+
+	if (target.id === member.id) {
+		kicked = true;
+	}
+	else {
+		kicked = false;
+	}
 
   client.logger.info(`${member.guild.name}: ${member.user.tag} has left the server - ID: ${member.user.id}`);
   const mleaveLog = client.channels.cache.get(client.mleaveLogId);
@@ -95,7 +103,21 @@ module.exports = async (client, member) => {
    * USERS TABLE
    * ------------------------------------------------------------------------------------------------ */ 
   // Update users table
-  client.db.users.deleteMember.run(member.id);
-  client.db.users.wipeTotalPoints.run(member.id, member.guild.id);
+  if (kicked == true) {
+		client.db.users.wipeTotalPoints.run(member.id, member.guild.id);
+	}
+	else {
+		return
+	}
+	
+	client.db.oldusers.insertRow.run(
+    member.id, 
+    member.user.username, 
+    member.user.discriminator,
+    member.guild.id, 
+    member.guild.name,
+    member.joinedAt.toString(),
+    member.user.bot ? 1 : 0
+  );
   client.db.oldusers.updateFormerMember.run(1, member.id, member.guild.id)
 };

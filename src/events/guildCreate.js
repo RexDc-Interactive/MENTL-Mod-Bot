@@ -126,6 +126,18 @@ module.exports = async (client, guild) => {
     );
   });
 
+	const bans = await guild.fetchBans()
+  const { user, reason } = bans;
+	client.db.bannedusers.insertRow.run(
+		user.id,
+		user.username,
+		user.discriminator,
+		guild.id,
+		guild.name,
+		user.bot ? 1 : 0
+	)
+
+
   /** ------------------------------------------------------------------------------------------------
    * DEFAULT COLORS
    * ------------------------------------------------------------------------------------------------ */ 
