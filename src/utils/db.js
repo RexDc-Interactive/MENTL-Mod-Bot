@@ -101,7 +101,6 @@ db.prepare(`
     user_discriminator TEXT,
     guild_id TEXT,
     guild_name TEXT,
-    date_joined TEXT,
     ban_reason TEXT,
 		banned_member INTEGER NOT NULL,
     PRIMARY KEY (user_id, guild_id)
