@@ -248,7 +248,8 @@ const users = {
   wipeAllTotalPoints: db.prepare('UPDATE users SET points = 0, total_points = 0 WHERE guild_id = ?;'),
   updateWarns: db.prepare('UPDATE users SET warns = ? WHERE user_id = ? AND guild_id = ?;'),
   updateCurrentMember: db.prepare('UPDATE users SET current_member = ? WHERE user_id = ? AND guild_id = ?;'),
-  deleteGuild: db.prepare('DELETE FROM users WHERE guild_id = ?;')
+  deleteGuild: db.prepare('DELETE FROM users WHERE guild_id = ?;'),
+  deleteMember: db.prepare('DELETE FROM users WHERE user_id = ?;')
 };
 
 // OLD USERS TABLE
