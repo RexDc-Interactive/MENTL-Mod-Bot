@@ -101,7 +101,7 @@ db.prepare(`
     user_discriminator TEXT,
     guild_id TEXT,
     guild_name TEXT,
-    ban_reason TEXT
+    ban_reason TEXT,
     PRIMARY KEY (user_id, guild_id)
   );
 `).run();
