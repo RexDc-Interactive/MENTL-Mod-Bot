@@ -95,7 +95,7 @@ module.exports = async (client, member) => {
    * USERS TABLE
    * ------------------------------------------------------------------------------------------------ */ 
   // Update users table
-  client.db.users.updateCurrentMember.run(0, member.id, member.guild.id);
+  client.db.users.deleteMember.run(member.id);
   client.db.users.wipeTotalPoints.run(member.id, member.guild.id);
   client.db.oldusers.updateFormerMember.run(1, member.id, member.guild.id)
 };
