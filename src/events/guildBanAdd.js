@@ -10,7 +10,7 @@ module.exports = async (client, guild, user) => {
     
     const banLog = fetchedLogs.entries.first();
     
-    const { executor, target } = banLog;
+    const { executor, target, reason } = banLog;
 
     client.logger.info(`${user.guild.name}: ${user.tag} was banned from the server`);
     const mleaveLog = client.channels.cache.get(client.mleaveLogId);
@@ -19,6 +19,7 @@ module.exports = async (client, guild, user) => {
                           .setDescription(`${emojis.ban} Member was banned from ${member.guild.name}`)
                           .addField('ID', `${user.id}`)
                           .addField('Tag',`${user.tag}`)
+													.addField('Ban Reason', `${reason}`)
                           .addField('Moderator', `${executor.tag}`))
 		}
 
@@ -38,11 +39,21 @@ module.exports = async (client, guild, user) => {
       .setAuthor(`${guild.name}`, guild.iconURL({ dynamic: true }))
       .setThumbnail(user.displayAvatarURL({ dynamic: true }))
       .setDescription(`${user} (**${user.tag}**)`)
+			.addField('Ban Reason', `${reason}`)
       .setTimestamp()
       .setFooter(`${executor.tag}`)
       .setColor(guild.me.displayHexColor);
     memberLog.send(embed);
   }
+
+  /** ------------------------------------------------------------------------------------------
+	 * DM BANNED MEMBER
+	 * ------------------------------------------------------------------------------------------ */
+	 const embed = new MessageEmbed()
+	   .setTitle('Ban Notice')
+		 .setAuthor(executor.tag)
+		 .setDescription(`You were banned from ${guild.name} for ${reason}`)
+	 target.send(embed)
 
 	/** ------------------------------------------------------------------------------------------------
    * BANNED USERS TABLE
