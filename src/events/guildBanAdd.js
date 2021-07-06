@@ -1,7 +1,6 @@
 const { MessageEmbed } = require('discord.js');
 const emojis = require('../utils/emojis.json');
 
-
 module.exports = async (client, guild, user) => {
     const fetchedLogs = await guild.fetchAuditLogs({
 		limit: 1,
